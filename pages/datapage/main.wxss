@@ -1,0 +1,2 @@
+@import "../../common/vendor.wxss";
+.main-container.data-v-8908c3a4{margin:8rpx}.name-container.data-v-8908c3a4{text-align:center;height:272rpx}.pic.data-v-8908c3a4{width:192rpx;height:192rpx;margin:8rpx}.info.data-v-8908c3a4{line-height:64rpx;font-size:30rpx;text-align:center}

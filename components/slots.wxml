@@ -1,0 +1,9 @@
+<import src="/components/tip.vue.wxml" />
+<import src="/components/searchbox.vue.wxml" /><import src="/components/tip.vue.wxml" /><import src="/components/news.vue.wxml" /><import src="/components/video.vue.wxml" /><import src="/components/uavitem.vue.wxml" />
+<import src="/components/tip.vue.wxml" /><import src="/components/uavitem.vue.wxml" />
+<import src="/components/title.vue.wxml" /><import src="/components/tip.vue.wxml" /><import src="/components/commentFrame.vue.wxml" />
+<import src="/components/tip.vue.wxml" /><import src="/components/news.vue.wxml" />
+<import src="/components/tip.vue.wxml" /><import src="/components/settingitem.vue.wxml" />
+<import src="/components/tip.vue.wxml" /><import src="/components/video.vue.wxml" />
+
+<import src="/components/comment.vue.wxml" />

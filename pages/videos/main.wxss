@@ -1,0 +1,2 @@
+@import "../../common/vendor.wxss";
+.button-group.data-v-b1a5f364{margin:8rpx;height:168rpx;text-align:center}.button-plus.data-v-b1a5f364{display:inline-block;margin-left:24rpx;margin-right:24rpx}.circle-button.data-v-b1a5f364{border-radius:100%;width:96rpx;height:96rpx}.button-text.data-v-b1a5f364{float:bottom;line-height:64rpx;font-size:28rpx;margin-top:8rpx;color:darkred}

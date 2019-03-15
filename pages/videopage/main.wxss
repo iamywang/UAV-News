@@ -1,0 +1,2 @@
+@import "../../common/vendor.wxss";
+.mainpage.data-v-c400e138{margin:8rpx}.date_tag.data-v-c400e138{height:64rpx;color:gray;border-bottom:2rpx solid gray}.comment.data-v-c400e138,.date_tag.data-v-c400e138{text-align:center;line-height:64rpx;font-size:28rpx}
