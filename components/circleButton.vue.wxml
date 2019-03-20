@@ -1,0 +1,1 @@
+<template name="08d04218"><navigator class="_a data-v-5f238565 button-plus" url="../error/main"><image class="_img data-v-5f238565 img" src="{{pic}}"></image> <view class="_div data-v-5f238565 button-text" style="color:{{color}}">{{name}}</view></navigator></template>

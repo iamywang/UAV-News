@@ -1,2 +1,2 @@
 @import "../../common/vendor.wxss";
-.button-group.data-v-ca30bf24{margin:8rpx;height:168rpx;text-align:center}.button-plus.data-v-ca30bf24{display:inline-block;margin-left:24rpx;margin-right:24rpx}.circle-button.data-v-ca30bf24{border-radius:100%;width:96rpx;height:96rpx}.button-text.data-v-ca30bf24{float:bottom;line-height:64rpx;font-size:28rpx;margin-top:8rpx;color:#00008b}
+.button-group.data-v-ca30bf24{display:inline-block}

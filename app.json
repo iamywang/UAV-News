@@ -1,4 +1,5 @@
 {
+  "cloud": true,
   "pages": [
     "pages/index/main",
     "pages/news/main",
@@ -8,14 +9,16 @@
     "pages/mainpage/main",
     "pages/videopage/main",
     "pages/datapage/main",
+    "pages/writepage/main",
     "pages/error/main"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#708090",
-    "navigationBarTitleText": "UAV-News",
+    "navigationBarTitleText": "无人机",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false,
+    "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
     "color": "#C8C8C8",
