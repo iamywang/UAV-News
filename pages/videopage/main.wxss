@@ -1,2 +1,2 @@
 @import "../../common/vendor.wxss";
-.mainpage.data-v-c400e138{margin:8rpx}.date_tag.data-v-c400e138{height:64rpx;color:gray;border-bottom:2rpx solid #d3d3d3}.comment.data-v-c400e138,.date_tag.data-v-c400e138{text-align:center;line-height:64rpx;font-size:28rpx}
+.mainpage.data-v-c400e138{margin:8rpx}.date_tag.data-v-c400e138{display:flex;flex-direction:row;text-align:left;line-height:64rpx;height:64rpx;font-size:28rpx;color:gray;border-bottom:2rpx solid #d3d3d3}.tip-img.data-v-c400e138{float:left;width:32rpx;height:32rpx;margin:16rpx}.comment.data-v-c400e138{font-size:28rpx;line-height:64rpx;text-align:center}

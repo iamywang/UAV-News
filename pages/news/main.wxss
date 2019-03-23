@@ -1,2 +1,2 @@
 @import "../../common/vendor.wxss";
-.button-group.data-v-ca30bf24{display:inline-block}
+.button-group.data-v-ca30bf24{text-align:center}

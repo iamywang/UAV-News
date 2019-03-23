@@ -10,6 +10,7 @@
     "pages/videopage/main",
     "pages/datapage/main",
     "pages/writepage/main",
+    "pages/searchpage/main",
     "pages/error/main"
   ],
   "window": {
