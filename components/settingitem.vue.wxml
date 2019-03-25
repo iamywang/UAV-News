@@ -1,1 +1,0 @@
-<template name="3f380201"><navigator class="_a data-v-41556d20 setting-item" url="{{url}}"><image class="_img data-v-41556d20 pic" src="{{src}}"></image> <view class="_div data-v-41556d20 text">{{text}}</view></navigator></template>

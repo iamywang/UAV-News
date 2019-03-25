@@ -1,1 +1,0 @@
-<template name="053db01b"><navigator class="_a data-v-3763f1ec uav-item" url="../datapage/main?name={{text}}&pic={{src}}&paras={{paras}}&advantages={{advs}}&fields={{fields}}"><image class="_img data-v-3763f1ec pic" src="{{src}}"></image> <view class="_div data-v-3763f1ec text">{{text}}</view></navigator></template>
