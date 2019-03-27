@@ -12,7 +12,7 @@
 	"cloudfunctionRoot": "cloudfunctions/",
 	"compileType": "miniprogram",
 	"appid": "wx81388a0a23995ab0",
-	"projectname": "uav-news",
+	"projectname": "UAV-News",
 	"condition": {
 		"search": {
 			"current": -1,

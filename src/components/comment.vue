@@ -4,7 +4,7 @@
         <img class="head" src="{{head}}">
         <div class="name-container">
           <div class="name">{{name}}
-            <div class="level">{{level}} 楼</div>
+            <div class="level"><img class="lm-pic" src="../../static/imgs/level.png"/>{{level}} 楼</div>
           </div>
           <div class="loc_model">
             <div class="location"><img class="lm-pic" src="../../static/imgs/location.png"/>{{location}}</div>
@@ -113,6 +113,7 @@
   }
 
   .level {
+    text-align: right;
     font-size: 15px;
     margin-right: 8px;
     color: gray;

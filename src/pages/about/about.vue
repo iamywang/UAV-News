@@ -15,10 +15,10 @@
       <settingitem src="../../static/imgs/setting.png" text="设置"></settingitem>
     </div>
     <tip name="程序信息"></tip>
-    <div class="version">名称：打开新世界的大门</div>
+    <div class="version">名称：无人机</div>
     <div class="version">开发者：iamywang</div>
-    <div class="version">版本：1.0.9</div>
-    <div class="version">更新时间：2019.3.23</div>
+    <div class="version">版本：1.0.10</div>
+    <div class="version">更新时间：2019.3.27</div>
   </div>
 </template>
 

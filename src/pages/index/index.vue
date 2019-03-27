@@ -30,7 +30,7 @@
     <div class="right-center {{open ? 'c-state1' : ''}}">
       <div class="notice">
         <img src="../../../static/imgs/broadcast.png" style="float: left; margin: 4px; width: 24px; height: 24px"/>
-        公告：无人机小程序
+        公告：无人机小程序 Version 1.0.10 版本
       </div>
       <div class="tab-changer">
         <img class="tab-item" src="../../../static/imgs/more.png" style="width: 26px" v-on:click="slide"/>
@@ -129,6 +129,15 @@
             <cirbutton v-bind:name=item.name v-bind:color=item.color v-bind:pic=item.pic
                        v-for="item in spelist"></cirbutton>
           </div>
+          <tip name="专栏文章"></tip>
+          <div v-for="count in latestnum">
+            <news v-bind:name=newslist[count-1].name v-bind:date=newslist[count-1].date
+                  v-bind:tag=newslist[count-1].tag
+                  v-bind:comment=newslist[count-1].comment v-bind:text=newslist[count-1].newstext
+                  v-bind:pic=newslist[count-1].newsback
+                  v-bind:commentlist=JSON.stringify(newslist[count-1].commentlist)
+                  v-bind:id=newslist[count-1]._id></news>
+          </div>
         </swiper-item>
         <!--页面5-->
         <swiper-item>
@@ -218,7 +227,7 @@
       wx.request({
         url: 'http://localhost:8000/search/',
         data: {
-          re: 'search'
+          fun: 'search'
         },
         success (res) {
           console.log(res.data)
