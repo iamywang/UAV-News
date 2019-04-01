@@ -1,5 +1,5 @@
 # 无人机新闻小程序
-
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu) [![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 ## 设计目标
 * 提供一个可以进行无人机相关新闻浏览，视频观看，直播观看，数据查询以及用户互动的小程序。
 * 在后台搭建服务器接口，能够通过wx.request请求获取服务器数据
