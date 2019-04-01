@@ -1,5 +1,5 @@
 <template>
-  <a class="button-plus" href="../error/main">
+  <a class="button-plus" href="../test/main">
     <img class="img" src="{{pic}}">
     <div class="button-text" style="color:{{color}}">{{name}}</div>
   </a>

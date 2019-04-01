@@ -11,12 +11,12 @@
     "pages/datapage/main",
     "pages/writepage/main",
     "pages/searchpage/main",
-    "pages/error/main"
+    "pages/test/main"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#708090",
-    "navigationBarTitleText": "无人机",
+    "navigationBarTitleText": "无人机小程序",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": false,
     "backgroundColor": "#FFFFFF"

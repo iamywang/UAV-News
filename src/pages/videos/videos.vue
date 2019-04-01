@@ -6,7 +6,7 @@
     </div>
     <div v-for="item in videolist">
       <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-              v-bind:src=item.videosrc v-bind:back=item.videoback v-bind:commentlist=JSON.stringify(item.commentlist) v-bind:id=item._id></videox>
+              v-bind:src=item.videosrc v-bind:back=item.videoback v-bind:commentlist=JSON.stringify(item.commentlist) v-bind:id=item._id v-bind:see=item.see></videox>
     </div>
     <tip name="正在直播"></tip>
     <div class="button-group">

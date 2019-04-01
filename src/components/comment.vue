@@ -4,7 +4,8 @@
         <img class="head" src="{{head}}">
         <div class="name-container">
           <div class="name">{{name}}
-            <div class="level"><img class="lm-pic" src="../../static/imgs/level.png"/>{{level}} 楼</div>
+            <!--<img class="lm-pic" src="../../static/imgs/level.png"/>-->
+            <div class="level">{{level}} 楼</div>
           </div>
           <div class="loc_model">
             <div class="location"><img class="lm-pic" src="../../static/imgs/location.png"/>{{location}}</div>
@@ -12,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="content">{{text}}</div>
+      <div class="content"><wxParse :content=text></wxParse></div>
       <div class="bottom">
         <div class="date">{{date}}</div>
         <img class="like-pic" src="../../static/imgs/like.png" v-on:click="addlike"/>
@@ -22,7 +23,9 @@
 </template>
 
 <script>
+  import wxParse from 'mpvue-wxparse'
   export default {
+    components: {wxParse},
     props: {
       name: {
         type: String,
@@ -66,10 +69,10 @@
 </script>
 
 <style scoped>
+  @import url("~mpvue-wxparse/src/wxParse.css");
   .comment-item {
     margin: 8px 16px 8px 16px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px lightgray;
+    border-bottom: 1px solid lightgray;
   }
 
   .info {
@@ -95,7 +98,7 @@
     float: bottom;
     display: flex;
     flex-direction: row;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     color: gray;
   }
@@ -104,12 +107,9 @@
   }
   .lm-pic {
     float: left;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    margin-left: 4px;
-    margin-right: 4px;
-    width: 16px;
-    height: 16px
+    margin: 4px;
+    width: 12px;
+    height: 12px
   }
 
   .level {
@@ -125,7 +125,7 @@
     line-height: 22px;
     font-size: 15px;
     text-align: left;
-    margin-left: 4px;
+    margin-left: 36px;
     margin-top: 8px;
     margin-bottom: 8px;
     min-height: 44px;
@@ -142,7 +142,7 @@
     float: left;
     display: inline-block;
     margin-left: 4px;
-    color: darkblue;
+    color: black;
   }
 
   .like-pic {

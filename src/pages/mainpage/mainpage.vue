@@ -2,9 +2,10 @@
   <div class="mainpage">
     <title v-bind:name=this.newsname></title>
     <div class="date_tag">
-      <div style="width: 40%"><img class="tip-img" src="../../../static/imgs/ndate.png">{{date}}</div>
-      <div style="width: 40%"><img class="tip-img" src="../../../static/imgs/nuser.png">{{tag}}</div>
-      <div style="width: 20%"><img class="tip-img" src="../../../static/imgs/ncomment.png">{{comment}}</div>
+      <div style="width: 36%"><img class="tip-img" src="../../../static/imgs/ndate.png">{{date}}</div>
+      <div style="width: 32%"><img class="tip-img" src="../../../static/imgs/nuser.png">{{tag}}</div>
+      <div style="width: 16%"><img class="tip-img" src="../../../static/imgs/ncomment.png">{{comment}}</div>
+      <div style="width: 16%"><img class="tip-img" src="../../../static/imgs/nsee.png">{{see}}</div>
     </div>
     <div><wxParse :content=text></wxParse></div>
     <tip name="相关文章"></tip>
@@ -25,6 +26,7 @@
       this.newsname = option.newsname
       this.date = option.date
       this.tag = option.tag
+      this.see = Number(option.see) + 1
       this.text = option.text
       this.comment = Number(option.comment)
       this.commentlist = JSON.parse(option.commentlist)
@@ -33,6 +35,14 @@
       db.collection('news').doc(_this.id).get({
         success (res) {
           _this.text = res.data.newstext
+        }
+      })
+      wx.cloud.callFunction({
+        name: 'updateSaw',
+        data: {
+          id: _this.id,
+          type: 'news',
+          see: _this.see
         }
       })
       wx.setNavigationBarTitle({title: this.newsname})
@@ -46,6 +56,7 @@
           _this.newsname = res.data.name
           _this.date = res.data.date
           _this.tag = res.data.tag
+          _this.see = res.data.see
           _this.text = res.data.newstext
           _this.comment = res.data.comment
           _this.commentlist = res.data.commentlist
@@ -87,6 +98,10 @@
       id: {
         type: String,
         default: ''
+      },
+      see: {
+        type: Number,
+        default: 0
       }
     }
   }
@@ -100,6 +115,8 @@
   }
 
   .date_tag {
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: flex;
     flex-direction: row;
     text-align: left;

@@ -1,15 +1,16 @@
 <template>
   <a class="news"
-     href="../mainpage/main?newsname={{name}}&date={{date}}&id={{id}}&tag={{tag}}&text={{text}}&commentlist={{commentlist}}&comment={{comment}}">
+     href="../mainpage/main?newsname={{name}}&date={{date}}&id={{id}}&tag={{tag}}&see={{see}}&text={{text}}&commentlist={{commentlist}}&comment={{comment}}">
     <div class="name">{{name}}</div>
     <div class="main-container">
       <img class="img" src="{{pic}}">
       <div class="text">{{text}}</div>
     </div>
     <div class="dc-container">
-      <div style="width: 30%"><img class="tip-img" src="../../static/imgs/ndate.png">{{date}}</div>
-      <div style="width: 50%"><img class="tip-img" src="../../static/imgs/nuser.png">{{tag}}</div>
-      <div style="width: 20%"><img class="tip-img" src="../../static/imgs/ncomment.png">{{comment}}</div>
+      <div style="width: 36%"><img class="tip-img" src="../../static/imgs/ndate.png">{{date}}</div>
+      <div style="width: 32%"><img class="tip-img" src="../../static/imgs/nuser.png">{{tag}}</div>
+      <div style="width: 16%"><img class="tip-img" src="../../static/imgs/ncomment.png">{{comment}}</div>
+      <div style="width: 16%"><img class="tip-img" src="../../static/imgs/nsee.png">{{see}}</div>
     </div>
   </a>
 </template>
@@ -48,6 +49,10 @@
       id: {
         type: String,
         default: ''
+      },
+      see: {
+        type: Number,
+        default: 0
       }
     }
   }
@@ -62,11 +67,12 @@
   }
 
   .name {
+    margin-left: 4px;
     height: 24px;
     font-size: 15px;
     font-weight: bold;
     color: black;
-    text-align: center;
+    text-align: left;
     line-height: 24px;
   }
 
@@ -83,7 +89,7 @@
   }
 
   .text {
-    text-align: center;
+    text-align: left;
     line-height: 24px;
     height: 72px;
     font-size: 14px;

@@ -6,7 +6,8 @@
     </div>
     <div v-for="item in newslist">
       <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
-            v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist) v-bind:id=item._id></news>
+            v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
+            v-bind:id=item._id v-bind:see=item.see></news>
     </div>
   </div>
 </template>
@@ -21,7 +22,9 @@
     onLoad () {
       const db = wx.cloud.database()
       var _this = this
-      db.collection('news').orderBy('_id', 'desc').get({
+      db.collection('news').orderBy('_id', 'desc').where({
+        type: 'news'
+      }).get({
         success (res) {
           _this.newslist = res.data
         }
@@ -30,7 +33,9 @@
     onPullDownRefresh () {
       const db = wx.cloud.database()
       var _this = this
-      db.collection('news').orderBy('_id', 'desc').get({
+      db.collection('news').orderBy('_id', 'desc').where({
+        type: 'news'
+      }).get({
         success (res) {
           _this.newslist = res.data
         }

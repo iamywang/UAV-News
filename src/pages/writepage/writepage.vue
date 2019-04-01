@@ -74,7 +74,7 @@
           }
         })
         wx.cloud.callFunction({
-          name: 'addNews',
+          name: 'addArticles',
           data: {
             comment: 0,
             commentlist: [],
@@ -82,7 +82,8 @@
             name: that.newsname,
             newsback: that.pic,
             newstext: that.text,
-            tag: that.tag
+            tag: that.tag,
+            see: 0
           },
           complete: res => {
             that.newsname = ''

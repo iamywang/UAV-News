@@ -1,10 +1,6 @@
 <template>
   <div class="main-container">
     <div class="left-silde" v-if=open>
-      <div class="notice">
-        <img src="../../../static/imgs/broadcast.png" style="float: left; margin: 4px; width: 24px; height: 24px"/>
-        侧边栏 Version 1.0
-      </div>
       <searchbox></searchbox>
       <button class="info" open-type="getUserInfo" v-on:click="login">
         <img class="head" src="{{head}}">
@@ -30,18 +26,18 @@
     <div class="right-center {{open ? 'c-state1' : ''}}">
       <div class="notice">
         <img src="../../../static/imgs/broadcast.png" style="float: left; margin: 4px; width: 24px; height: 24px"/>
-        公告：无人机小程序 Version 1.0.10 版本
+        公告：无人机小程序 Version 1.0.16 版本
       </div>
       <div class="tab-changer">
-        <img class="tab-item" src="../../../static/imgs/more.png" style="width: 26px" v-on:click="slide"/>
+        <img src="../../../static/imgs/more.png" style="width: 18px; height: 18px; margin: 4px" v-on:click="slide"/>
         <div class="tab-item {{currentTab == 0 ? 'on' : ''}}" v-on:click="setTab(0)">最新</div>
         <div class="tab-item {{currentTab == 1 ? 'on' : ''}}" v-on:click="setTab(1)">Top榜</div>
-        <div class="tab-item {{currentTab == 2 ? 'on' : ''}}" v-on:click="setTab(2)">数据</div>
-        <div class="tab-item {{currentTab == 3 ? 'on' : ''}}" v-on:click="setTab(3)">专题</div>
-        <div class="tab-item {{currentTab == 4 ? 'on' : ''}}" v-on:click="setTab(4)">测试</div>
+        <div class="tab-item {{currentTab == 2 ? 'on' : ''}}" v-on:click="setTab(2)">部落</div>
+        <div class="tab-item {{currentTab == 3 ? 'on' : ''}}" v-on:click="setTab(3)">数据</div>
+        <div class="tab-item {{currentTab == 4 ? 'on' : ''}}" v-on:click="setTab(4)">专题</div>
       </div>
       <swiper style="height: 830px" current="{{currentTab}}" @change="swiperChange">
-        <!--页面1-->
+        <!--页面0-->
         <swiper-item>
           <searchbox></searchbox>
           <swiper indicator-dots="{{true}}" previous-margin="48px" next-margin="48px" indicator-color="#FFFFFF"
@@ -57,21 +53,21 @@
             <tip name="最新新闻"></tip>
             <div v-for="count in latestnum">
               <news v-bind:name=newslist[count-1].name v-bind:date=newslist[count-1].date
-                    v-bind:tag=newslist[count-1].tag
-                    v-bind:comment=newslist[count-1].comment v-bind:text=newslist[count-1].newstext
-                    v-bind:pic=newslist[count-1].newsback
-                    v-bind:commentlist=JSON.stringify(newslist[count-1].commentlist)
-                    v-bind:id=newslist[count-1]._id></news>
+                    v-bind:tag=newslist[count-1].tag v-bind:comment=newslist[count-1].comment
+                    v-bind:text=newslist[count-1].newstext v-bind:pic=newslist[count-1].newsback
+                    v-bind:commentlist=JSON.stringify(newslist[count-1].commentlist) v-bind:id=newslist[count-1]._id
+                    v-bind:see=newslist[count-1].see></news>
             </div>
             <tip name="最新视频"></tip>
             <videox v-bind:name=videolist[0].name v-bind:date=videolist[0].date v-bind:time=videolist[0].time
                     v-bind:comment=videolist[0].comment v-bind:src=videolist[0].videosrc
-                    v-bind:back=videolist[0].videoback
-                    v-bind:commentlist=JSON.stringify(videolist[0].commentlist) v-bind:id=videolist[0]._id></videox>
+                    v-bind:back=videolist[0].videoback v-bind:commentlist=JSON.stringify(videolist[0].commentlist)
+                    v-bind:id=videolist[0]._id v-bind:see=videolist[0].see></videox>
           </div>
         </swiper-item>
-        <!--页面2-->
+        <!--页面1-->
         <swiper-item>
+          <searchbox></searchbox>
           <tip name="Top 专栏"></tip>
           <div class="button-group">
             <cirbutton v-bind:name=item.name v-bind:color=item.color v-bind:pic=item.pic
@@ -85,19 +81,31 @@
             <div class="hotword">环球网</div>
           </div>
           <tip name="Top 读"></tip>
-          <news v-bind:name=newslist[0].name v-bind:date=newslist[0].date v-bind:tag=newslist[0].tag
-                v-bind:comment=newslist[0].comment v-bind:text=newslist[0].newstext v-bind:pic=newslist[0].newsback
-                v-bind:commentlist=JSON.stringify(newslist[0].commentlist) v-bind:id=newslist[0]._id></news>
+          <div v-for="item in newslist" v-if="item.see > 20">
+            <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
+                  v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
+                  v-bind:id=item._id v-bind:see=item.see></news>
+          </div>
           <tip name="Top 观"></tip>
-          <videox v-bind:name=videolist[0].name v-bind:date=videolist[0].date v-bind:time=videolist[0].time
-                  v-bind:comment=videolist[0].comment v-bind:src=videolist[0].videosrc
-                  v-bind:back=videolist[0].videoback
-                  v-bind:commentlist=JSON.stringify(videolist[0].commentlist) v-bind:id=videolist[0]._id></videox>
+          <div v-for="item in videolist" v-if="item.see > 20">
+            <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
+                    v-bind:src=item.videosrc v-bind:back=item.videoback
+                    v-bind:commentlist=JSON.stringify(item.commentlist) v-bind:id=item._id v-bind:see=item.see></videox>
+          </div>
           <tip name="Top 评"></tip>
-          <div v-for="item in newslist[0].commentlist" v-if="(item.like)>100">
+          <div v-for="item in newslist[0].commentlist" v-if="item.like > 100">
             <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
                      v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level
                      v-bind:like=item.like></comment>
+          </div>
+        </swiper-item>
+        <!--页面2-->
+        <swiper-item>
+          <searchbox></searchbox>
+          <div v-for="item in articlelist">
+            <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
+                  v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
+                  v-bind:id=item._id v-bind:see=item.see></news>
           </div>
         </swiper-item>
         <!--页面3-->
@@ -132,20 +140,10 @@
           <tip name="专栏文章"></tip>
           <div v-for="count in latestnum">
             <news v-bind:name=newslist[count-1].name v-bind:date=newslist[count-1].date
-                  v-bind:tag=newslist[count-1].tag
-                  v-bind:comment=newslist[count-1].comment v-bind:text=newslist[count-1].newstext
-                  v-bind:pic=newslist[count-1].newsback
-                  v-bind:commentlist=JSON.stringify(newslist[count-1].commentlist)
-                  v-bind:id=newslist[count-1]._id></news>
-          </div>
-        </swiper-item>
-        <!--页面5-->
-        <swiper-item>
-          <tip name="request测试"></tip>
-          <div v-for="item in reqlist">
-            <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
-                  v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
-                  v-bind:id=item._id></news>
+                  v-bind:tag=newslist[count-1].tag v-bind:comment=newslist[count-1].comment
+                  v-bind:text=newslist[count-1].newstext v-bind:pic=newslist[count-1].newsback
+                  v-bind:commentlist=JSON.stringify(newslist[count-1].commentlist) v-bind:id=newslist[count-1]._id
+                  v-bind:see=newslist[count-1].see></news>
           </div>
         </swiper-item>
       </swiper>
@@ -169,80 +167,19 @@
       wx.cloud.init({
         env: 'ywang-env-4a3998'
       })
-      const db = wx.cloud.database()
-      var _this = this
-      db.collection('news').orderBy('_id', 'desc').get({
-        success (res) {
-          _this.newslist = res.data
-        }
-      })
-      db.collection('pics').orderBy('_id', 'desc').get({
-        success (res) {
-          _this.piclist = res.data
-        }
-      })
-      db.collection('videos').orderBy('_id', 'desc').get({
-        success (res) {
-          _this.videolist = res.data
-        }
-      })
-      db.collection('lives').orderBy('_id', 'desc').get({
-        success (res) {
-          _this.livelist = res.data
-        }
-      })
-      wx.request({
-        url: 'http://localhost:8000/search/',
-        data: {
-          re: 'search'
-        },
-        success (res) {
-          _this.reqlist = res.data
-        }
-      })
+      this.refresh_cloud()
     },
     onPullDownRefresh () {
-      const db = wx.cloud.database()
-      var _this = this
-      db.collection('news').orderBy('_id', 'desc').get({
-        success (res) {
-          _this.newslist = res.data
-        }
-      })
-      db.collection('pics').orderBy('_id', 'desc').get({
-        success (res) {
-          _this.piclist = res.data
-        }
-      })
-      db.collection('videos').orderBy('_id', 'desc').get({
-        success (res) {
-          _this.videolist = res.data
-        }
-      })
-      db.collection('lives').orderBy('_id', 'desc').get({
-        success (res) {
-          _this.livelist = res.data
-        }
-      })
-      wx.request({
-        url: 'http://localhost:8000/search/',
-        data: {
-          fun: 'search'
-        },
-        success (res) {
-          console.log(res.data)
-          _this.reqlist = res.data
-        }
-      })
+      this.refresh_cloud()
       wx.stopPullDownRefresh()
     },
     data () {
       return {
         newslist: [],
+        articlelist: [],
         videolist: [],
         piclist: [],
         livelist: [],
-        reqlist: [],
         open: false,
         head: '../../static/imgs/user.png',
         name: '点击登录',
@@ -250,28 +187,61 @@
         swiperIndex: 0,
         latestnum: 3,
         leftlist: [
-          {'name': '功能1', 'pic': '../../static/imgs/hot.png', 'color': '#13227A'},
-          {'name': '功能2', 'pic': '../../static/imgs/hot.png', 'color': '#13227A'},
-          {'name': '功能3', 'pic': '../../static/imgs/hot.png', 'color': '#13227A'}
+          {'name': '功能1', 'pic': '../../static/imgs/hot.png', 'color': '#122222'},
+          {'name': '功能2', 'pic': '../../static/imgs/hot.png', 'color': '#233333'},
+          {'name': '功能3', 'pic': '../../static/imgs/hot.png', 'color': '#344444'}
         ],
         cirlist: [
-          {'name': '热门新闻', 'pic': '../../static/imgs/hot.png', 'color': '#13227A'},
-          {'name': '热门视频', 'pic': '../../static/imgs/hot.png', 'color': '#13227A'},
-          {'name': '其他热门', 'pic': '../../static/imgs/hot.png', 'color': '#13227A'}
+          {'name': '热门新闻', 'pic': '../../static/imgs/hot.png', 'color': '#123333'},
+          {'name': '热门视频', 'pic': '../../static/imgs/hot.png', 'color': '#234444'},
+          {'name': '其他热门', 'pic': '../../static/imgs/hot.png', 'color': '#345555'}
         ],
         spelist: [
-          {'name': '早报', 'pic': '../../static/imgs/hot.png', 'color': '#234567'},
-          {'name': '精品文章', 'pic': '../../static/imgs/hot.png', 'color': '#234567'},
-          {'name': '潮流热机', 'pic': '../../static/imgs/hot.png', 'color': '#234567'},
-          {'name': '数据先锋', 'pic': '../../static/imgs/hot.png', 'color': '#234567'},
-          {'name': '专家言论', 'pic': '../../static/imgs/hot.png', 'color': '#234567'},
-          {'name': '测评室', 'pic': '../../static/imgs/hot.png', 'color': '#234567'},
-          {'name': '购买建议', 'pic': '../../static/imgs/hot.png', 'color': '#234567'},
-          {'name': '其他', 'pic': '../../static/imgs/hot.png', 'color': '#234567'}
+          {'name': '早报', 'pic': '../../static/imgs/hot.png', 'color': '#117711'},
+          {'name': '精品文章', 'pic': '../../static/imgs/hot.png', 'color': '#771111'},
+          {'name': '潮流热机', 'pic': '../../static/imgs/hot.png', 'color': '#111177'},
+          {'name': '数据先锋', 'pic': '../../static/imgs/hot.png', 'color': '#227722'},
+          {'name': '专家言论', 'pic': '../../static/imgs/hot.png', 'color': '#772222'},
+          {'name': '测评室', 'pic': '../../static/imgs/hot.png', 'color': '#222277'},
+          {'name': '购买建议', 'pic': '../../static/imgs/hot.png', 'color': '#338888'},
+          {'name': '其他', 'pic': '../../static/imgs/hot.png', 'color': '#888833'}
         ]
       }
     },
     methods: {
+      refresh_cloud () {
+        const db = wx.cloud.database()
+        var _this = this
+        db.collection('news').orderBy('_id', 'desc').where({
+          type: 'news'
+        }).get({
+          success (res) {
+            _this.newslist = res.data
+          }
+        })
+        db.collection('pics').orderBy('_id', 'desc').get({
+          success (res) {
+            _this.piclist = res.data
+          }
+        })
+        db.collection('videos').orderBy('_id', 'desc').get({
+          success (res) {
+            _this.videolist = res.data
+          }
+        })
+        db.collection('lives').orderBy('_id', 'desc').get({
+          success (res) {
+            _this.livelist = res.data
+          }
+        })
+        db.collection('news').orderBy('_id', 'desc').where({
+          type: 'article'
+        }).get({
+          success (res) {
+            _this.articlelist = res.data
+          }
+        })
+      },
       setTab (e) {
         var _this = this
         _this.currentTab = e

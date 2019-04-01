@@ -72,6 +72,10 @@
 **2. Django**
 * python语言的后端框架
 
+**3. Apache**
+* 将Django部署到Apache上
+* 服务器：Ubuntu Server 18.04
+
 ## demo
 ![](demo/d1.jpg)
 ![](demo/d2.jpg)

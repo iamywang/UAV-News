@@ -2,10 +2,11 @@
   <div class="mainpage">
     <title v-bind:name=this.newsname></title>
     <div class="date_tag">
-      <div style="width: 40%"><img class="tip-img" src="../../../static/imgs/ndate.png">{{date}}</div>
+      <div style="width: 36%"><img class="tip-img" src="../../../static/imgs/ndate.png">{{date}}</div>
       <div style="width: 20%"><img class="tip-img" src="../../../static/imgs/nuser.png">视频</div>
       <div style="width: 20%"><img class="tip-img" src="../../../static/imgs/ntime.png">{{tag}}</div>
-      <div style="width: 20%"><img class="tip-img" src="../../../static/imgs/ncomment.png">{{comment}}</div>
+      <div style="width: 12%"><img class="tip-img" src="../../../static/imgs/ncomment.png">{{comment}}</div>
+      <div style="width: 12%"><img class="tip-img" src="../../../static/imgs/nsee.png">{{see}}</div>
     </div>
     <video src="{{src}}" title="{{newsname}}" style="width: 100%; margin-top: 8px"></video>
     <tip name="相关视频"></tip>
@@ -25,9 +26,19 @@
       this.newsname = option.newsname
       this.date = option.date
       this.tag = option.tag
+      this.see = Number(option.see) + 1
       this.src = option.src
       this.comment = Number(option.comment)
       this.commentlist = JSON.parse(option.commentlist)
+      var _this = this
+      wx.cloud.callFunction({
+        name: 'updateSaw',
+        data: {
+          id: _this.id,
+          type: 'videos',
+          see: _this.see
+        }
+      })
       wx.setNavigationBarTitle({title: this.newsname})
     },
     onPullDownRefresh () {
@@ -39,6 +50,7 @@
           _this.newsname = res.data.name
           _this.date = res.data.date
           _this.tag = res.data.time
+          _this.see = res.data.see
           _this.src = res.data.videosrc
           _this.comment = res.data.comment
           _this.commentlist = res.data.commentlist
@@ -80,6 +92,10 @@
       id: {
         type: String,
         default: ''
+      },
+      see: {
+        type: Number,
+        default: 0
       }
     }
   }
@@ -91,6 +107,8 @@
   }
 
   .date_tag {
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: flex;
     flex-direction: row;
     text-align: left;
