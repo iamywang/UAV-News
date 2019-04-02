@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <div class="left-silde" v-if=open>
-      <searchbox></searchbox>
+      <searchbox v-bind:flag=true></searchbox>
       <button class="info" open-type="getUserInfo" v-on:click="login">
         <img class="head" src="{{head}}">
         <div class="name">{{name}}</div>
@@ -67,7 +67,7 @@
         </swiper-item>
         <!--页面1-->
         <swiper-item>
-          <searchbox></searchbox>
+          <searchbox v-bind:flag=true></searchbox>
           <tip name="Top 专栏"></tip>
           <div class="button-group">
             <cirbutton v-bind:name=item.name v-bind:color=item.color v-bind:pic=item.pic
@@ -114,12 +114,10 @@
           <uavitem text="无人机大会" src="../../static/imgs/technology.png"></uavitem>
           <uavitem text="无人机研发探讨" src="../../static/imgs/technology.png"></uavitem>
           <uavitem text="其他" src="../../static/imgs/technology.png"></uavitem>
-          <tip name="机器参数数据"></tip>
-          <uavitem text="固定翼无人机" src="../../static/imgs/technology.png"></uavitem>
-          <uavitem text="无人直升机" src="../../static/imgs/technology.png"></uavitem>
-          <uavitem text="多旋翼无人机" src="../../static/imgs/technology.png"></uavitem>
-          <uavitem text="垂直起降固定翼" src="../../static/imgs/technology.png"></uavitem>
-          <uavitem text="其他无人机" src="../../static/imgs/technology.png"></uavitem>
+          <tip name="无人机数据"></tip>
+          <div v-for="item in datalist">
+            <uavitem v-bind:src=item.src v-bind:name=item.name v-bind:text=item.text></uavitem>
+          </div>
         </swiper-item>
         <!--页面4-->
         <swiper-item>
@@ -205,6 +203,12 @@
           {'name': '测评室', 'pic': '../../static/imgs/hot.png', 'color': '#222277'},
           {'name': '购买建议', 'pic': '../../static/imgs/hot.png', 'color': '#338888'},
           {'name': '其他', 'pic': '../../static/imgs/hot.png', 'color': '#888833'}
+        ],
+        datalist: [
+          {name: '固定翼无人机', src: '../../static/imgs/technology.png', text: '固定翼无人机'},
+          {name: '无人直升机', src: '../../static/imgs/technology.png', text: '无人直升机'},
+          {name: '多旋翼无人机', src: '../../static/imgs/technology.png', text: '多旋翼无人机'},
+          {name: '垂直起降固定翼', src: '../../static/imgs/technology.png', text: '垂直起降固定翼'}
         ]
       }
     },

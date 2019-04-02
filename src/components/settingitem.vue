@@ -18,7 +18,7 @@
       },
       url: {
         type: String,
-        default: '../error/main'
+        default: '../test/main'
       }
     }
   }

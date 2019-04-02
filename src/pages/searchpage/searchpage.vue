@@ -2,7 +2,7 @@
   <div class="search-page">
     <div class="search-box">
       <img class="pic" src="../../../static/imgs/search.png">
-      <input class="input" type="text" placeholder="请输入搜索内容..." v-model="key">
+      <input class="input" type="text" placeholder="请输入搜索内容" v-model="key">
       <a class="push" v-on:click="search" href="">
         <img class="pic" src="../../../static/imgs/search.png">搜索</a>
     </div>

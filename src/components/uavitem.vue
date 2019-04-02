@@ -1,5 +1,5 @@
 <template>
-  <a class="uav-item" href="../datapage/main?name={{text}}&pic={{src}}&paras={{paras}}&advantages={{advs}}&fields={{fields}}">
+  <a class="uav-item" href="../datapage/main?name={{text}}&pic={{src}}&text={{info}}">
     <img class="pic" src="{{src}}">
     <div class="text">{{text}}</div>
   </a>
@@ -16,15 +16,7 @@
         type: String,
         default: ''
       },
-      paras: {
-        type: String,
-        default: ''
-      },
-      advs: {
-        type: String,
-        default: ''
-      },
-      fields: {
+      info: {
         type: String,
         default: ''
       }

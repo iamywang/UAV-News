@@ -1,14 +1,22 @@
 <template>
   <div class="search-box">
     <img class="pic" src="../../static/imgs/search.png">
-    <input class="input" type="text" placeholder="请输入搜索内容..." v-model="value">
-    <a class="push" href="../searchpage/main?key={{value}}" style="width: 20%"><img class="pic" src="../../static/imgs/search.png">搜索</a>
-    <a class="push" href="../writepage/main"><img class="pic" src="../../static/imgs/write.png">新文章</a>
+    <input class="input" type="text" placeholder="请输入搜索内容" v-model="value" v-if="flag===false">
+    <a class="push" href="../searchpage/main?key={{value}}" style="width: 20%" v-if="flag===false"><img class="pic" src="../../static/imgs/search.png">搜索</a>
+    <a class="push" href="../writepage/main" v-if="flag===false"><img class="pic" src="../../static/imgs/write.png">新文章</a>
+    <input class="input" type="text" placeholder="请输入搜索内容" v-model="value" style="width: 72%" v-if="flag===true">
+    <a class="push" href="../searchpage/main?key={{value}}" style="width: 28%" v-if="flag===true"><img class="pic" src="../../static/imgs/search.png">搜索</a>
   </div>
 </template>
 
 <script>
   export default {
+    props: {
+      flag: {
+        type: Boolean,
+        default: false
+      }
+    },
     data () {
       return {
         value: ''
