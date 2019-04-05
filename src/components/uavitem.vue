@@ -2,6 +2,7 @@
   <a class="uav-item" href="../datapage/main?name={{text}}&pic={{src}}&text={{info}}">
     <img class="pic" src="{{src}}">
     <div class="text">{{text}}</div>
+    <div class="arrow">{{arrow}}</div>
   </a>
 </template>
 
@@ -20,6 +21,11 @@
         type: String,
         default: ''
       }
+    },
+    data () {
+      return {
+        arrow: '>'
+      }
     }
   }
 </script>
@@ -30,16 +36,25 @@
     margin-left: 4px;
     margin-right: 4px;
     height: 80px;
+    display: flex;
+    flex-direction: row;
   }
 
   .pic {
-    float: left;
     margin: 8px;
     width: 64px;
     height: 64px;
   }
 
   .text {
+    width: 90%;
+    font-size: 15px;
+    line-height: 80px;
+  }
+
+  .arrow{
+    width: 10%;
+    text-align: center;
     font-size: 15px;
     line-height: 80px;
   }

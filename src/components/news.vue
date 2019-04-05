@@ -1,6 +1,7 @@
 <template>
   <a class="news"
      href="../mainpage/main?newsname={{name}}&date={{date}}&id={{id}}&tag={{tag}}&see={{see}}&text={{text}}&commentlist={{commentlist}}&comment={{comment}}">
+    <div class="mark">HOT</div>
     <div class="name">{{name}}</div>
     <div class="main-container">
       <img class="img" src="{{pic}}">
@@ -60,39 +61,56 @@
 
 <style scoped>
   .news {
-    border-radius: 8px;
-    height: 128px;
-    margin: 8px 16px 8px 16px;
-    box-shadow: 4px 4px 4px lightgrey;
+    /*border-radius: 8px;*/
+    height: 160px;
+    margin: 8px;
+    box-shadow: 0 0 4px darkgray;
   }
 
   .name {
-    margin-left: 4px;
-    height: 24px;
+    margin-left: 8px;
+    height: 32px;
     font-size: 15px;
     font-weight: bold;
     color: black;
     text-align: left;
-    line-height: 24px;
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 32px;
+  }
+
+  .mark {
+    border-radius: 8px;
+    margin: 6px;
+    font-size: 12px;
+    color: white;
+    background: rgba(255, 75, 75, 0.75);
+    box-shadow: 0 0 2px red;
+    text-align: center;
+    width: 48px;
+    line-height: 20px;
+    position: absolute;
+    right: 6px;
   }
 
   .main-container {
-    height: 72px;
+    height: 96px;
   }
 
   .img {
     float: left;
-    width: 100px;
-    height: 64px;
-    margin: 4px;
+    width: 120px;
+    height: 80px;
+    margin: 8px;
     border-radius: 8px;
   }
 
   .text {
     text-align: left;
     line-height: 24px;
-    height: 72px;
-    font-size: 14px;
+    height: 96px;
+    font-size: 13px;
     color: lightslategray;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -119,5 +137,4 @@
     height: 16px;
     margin: 8px;
   }
-
 </style>

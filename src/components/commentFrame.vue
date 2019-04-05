@@ -14,13 +14,13 @@
       <button class="push-button" open-type="getUserInfo" v-on:click="pushComment">发表评论</button>
     </div>
     <tip name="热门评论"></tip>
-    <div v-for="item in commentlist" v-if="item.like>100">
+    <div v-for="item in commentlist" v-if="item.like>100" :key="item.level">
       <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
                v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like
                @addLike="addlike"></comment>
     </div>
     <tip name="评论列表"></tip>
-    <div v-for="item in commentlist">
+    <div v-for="item in commentlist" :key="item.level">
       <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
                v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like
                @addLike="addlike"></comment>
@@ -36,18 +36,12 @@
     components: {comment, tip},
     onLoad () {
       var that = this
-      wx.getSetting({
-        success (rs) {
-          if (rs.authSetting.scope.userInfo === true) {
-            that.flag = 'hidden'
-            wx.getUserInfo({
-              success (res) {
-                const userInfo = res.userInfo
-                that.username = userInfo.nickName
-                that.pic = userInfo.avatarUrl
-              }
-            })
-          }
+      wx.getUserInfo({
+        success (res) {
+          const userInfo = res.userInfo
+          that.username = userInfo.nickName
+          that.pic = userInfo.avatarUrl
+          that.flag = 'hidden'
         }
       })
     },

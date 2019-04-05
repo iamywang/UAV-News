@@ -8,8 +8,8 @@
       <div style="width: 16%"><img class="tip-img" src="../../../static/imgs/nsee.png">{{see}}</div>
     </div>
     <div><wxParse :content=text></wxParse></div>
-    <tip name="相关文章"></tip>
-    <div class="relative">{{id}}</div>
+<!--    <tip name="相关文章"></tip>-->
+<!--    <div class="relative">{{id}}</div>-->
     <commentFrame v-bind:commentlist=commentlist v-bind:level=comment v-bind:id=id check="news"></commentFrame>
   </div>
 </template>

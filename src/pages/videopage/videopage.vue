@@ -9,8 +9,8 @@
       <div style="width: 12%"><img class="tip-img" src="../../../static/imgs/nsee.png">{{see}}</div>
     </div>
     <video src="{{src}}" title="{{newsname}}" style="width: 100%; margin-top: 8px"></video>
-    <tip name="相关视频"></tip>
-    <div class="comment">{{id}}</div>
+<!--    <tip name="相关视频"></tip>-->
+<!--    <div class="comment">{{id}}</div>-->
     <commentFrame v-bind:commentlist=commentlist v-bind:level=comment v-bind:id=id check="videos"></commentFrame>
   </div>
 </template>

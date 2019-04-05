@@ -22,18 +22,12 @@
   export default {
     onLoad () {
       var that = this
-      wx.getSetting({
-        success (rs) {
-          if (rs.authSetting.scope.userInfo === true) {
-            that.flag = 'hidden'
-            wx.getUserInfo({
-              success (res) {
-                const userInfo = res.userInfo
-                that.tag = userInfo.nickName
-                that.pic = userInfo.avatarUrl
-              }
-            })
-          }
+      wx.getUserInfo({
+        success (res) {
+          const userInfo = res.userInfo
+          that.tag = userInfo.nickName
+          that.pic = userInfo.avatarUrl
+          that.flag = 'hidden'
         }
       })
     },
@@ -81,7 +75,7 @@
             date: that.date,
             name: that.newsname,
             newsback: that.pic,
-            newstext: that.text,
+            newstext: '<p>' + that.text + '</p>' + '<p><img src="' + that.pic + '"/></p>',
             tag: that.tag,
             see: 0
           },

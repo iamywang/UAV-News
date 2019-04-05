@@ -58,38 +58,6 @@
         "selectedIconPath": "static/tabs/set-act.png"
       }
     ],
-    "items": [
-      {
-        "name": "首页",
-        "pagePath": "pages/index/main",
-        "icon": "static/tabs/home.png",
-        "activeIcon": "static/tabs/home-act.png"
-      },
-      {
-        "name": "新闻",
-        "pagePath": "pages/news/main",
-        "icon": "static/tabs/news.png",
-        "activeIcon": "static/tabs/news-act.png"
-      },
-      {
-        "name": "视频",
-        "pagePath": "pages/videos/main",
-        "icon": "static/tabs/video.png",
-        "activeIcon": "static/tabs/video-act.png"
-      },
-      {
-        "name": "数据",
-        "pagePath": "pages/datas/main",
-        "icon": "static/tabs/data.png",
-        "activeIcon": "static/tabs/data-act.png"
-      },
-      {
-        "name": "关于",
-        "pagePath": "pages/about/main",
-        "icon": "static/tabs/set.png",
-        "activeIcon": "static/tabs/set-act.png"
-      }
-    ],
     "position": "bottom"
   }
 }

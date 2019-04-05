@@ -24,6 +24,7 @@
 
 <script>
   import wxParse from 'mpvue-wxparse'
+
   export default {
     components: {wxParse},
     props: {
@@ -71,8 +72,9 @@
 <style scoped>
   @import url("~mpvue-wxparse/src/wxParse.css");
   .comment-item {
-    margin: 8px 16px 8px 16px;
-    border-bottom: 1px solid lightgray;
+    margin: 8px;
+    /*border-bottom: 1px solid lightgray;*/
+    box-shadow: 0 0 4px darkgray;
   }
 
   .info {
@@ -113,17 +115,21 @@
   }
 
   .level {
-    text-align: right;
-    font-size: 15px;
-    margin-right: 8px;
-    color: gray;
+    text-align: center;
+    font-size: 14px;
+    margin: 4px;
     float: right;
-    width: 50px;
+    width: 48px;
+    line-height: 20px;
+    border-radius: 8px;
+    color: white;
+    background: rgba(255, 69, 0, 0.75);
+    box-shadow: 0 0 2px darkorange;
   }
 
   .content {
     line-height: 22px;
-    font-size: 15px;
+    font-size: 14px;
     text-align: left;
     margin-left: 36px;
     margin-top: 8px;
@@ -134,7 +140,7 @@
   .bottom {
     float: bottom;
     text-align: right;
-    font-size: 14px;
+    font-size: 13px;
     margin-right: 8px;
   }
 

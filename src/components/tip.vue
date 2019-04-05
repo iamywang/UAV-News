@@ -19,22 +19,21 @@
 <style scoped>
   .tip {
     margin: 4px;
-    height: 32px;
+    height: 28px;
   }
 
   .left {
     float: left;
-    width: 8px;
-    height: 32px;
+    width: 7px;
+    height: 28px;
     background: #708090;
     margin-right: 4px;
   }
 
   .name {
-    font-size: 15px;
+    font-size: 14px;
     color: darkgreen;
     text-align: left;
-    line-height: 32px;
+    line-height: 28px;
   }
-
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <tip name="无人机数据"></tip>
-    <div v-for="item in datalist">
+    <div v-for="item in datalist" :key="item.name">
       <uavitem v-bind:src=item.src v-bind:name=item.name v-bind:text=item.text></uavitem>
     </div>
   </div>

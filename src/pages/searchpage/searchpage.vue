@@ -8,7 +8,7 @@
     </div>
     <tip name="历史搜索"></tip>
     <div class="hot-box">
-      <div class="hot" v-for="item in hislist">{{item}}</div>
+      <div class="hot" v-for="item in hislist" :key="item">{{item}}</div>
     </div>
     <tip name="热搜词"></tip>
     <div class="hot-box">
@@ -20,7 +20,7 @@
       <div class="hot">无人机之家</div>
     </div>
     <tip name="结果"></tip>
-    <div v-for="item in reslist">
+    <div v-for="item in reslist" :key="item._id">
       <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
             v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
             v-bind:id=item._id></news>

@@ -1,8 +1,13 @@
 <template>
-  <a class="button-plus" href="../test/main">
-    <img class="img" src="{{pic}}">
-    <div class="button-text" style="color:{{color}}">{{name}}</div>
-  </a>
+  <div class="button-plus">
+    <div>
+      <div class="corner" v-if="corner>0">{{corner}}</div>
+      <img class="img" src="{{pic}}">
+    </div>
+    <div class="button-text">
+      <div style="color:{{color}}; width: 52px; float: left">{{name}}</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,6 +24,10 @@
       color: {
         type: String,
         default: ''
+      },
+      corner: {
+        type: Number,
+        default: 0
       }
     }
   }
@@ -33,6 +42,18 @@
     display: inline-block;
   }
 
+  .corner {
+    font-size: 13px;
+    width: 20px;
+    line-height: 20px;
+    color: white;
+    background: rgba(255, 0, 0, 0.8);
+    border-radius: 100%;
+    float: right;
+    position: relative;
+    top: 0;
+    right: 20px;
+  }
   .img {
     border-radius: 100%;
     width: 44px;

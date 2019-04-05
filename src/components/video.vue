@@ -1,12 +1,12 @@
 <template>
   <a class="videox" href="../videopage/main?newsname={{name}}&date={{date}}&id={{id}}&tag={{time}}&see={{see}}&commentlist={{commentlist}}&comment={{comment}}&src={{src}}">
+    <div class="mark">视频</div>
     <div class="name"  style="background: url({{back}}) no-repeat;background-size: cover;-moz-background-size: cover;-webkit-background-size: cover;-o-background-size: cover">{{name}}</div>
     <div class="dc-container">
-        <div style="width: 36%"><img class="tip-img" src="../../static/imgs/ndate.png">{{date}}</div>
-        <div style="width: 20%"><img class="tip-img" src="../../static/imgs/nuser.png">视频</div>
-        <div style="width: 20%"><img class="tip-img" src="../../static/imgs/ntime.png">{{time}}</div>
-        <div style="width: 14%"><img class="tip-img" src="../../static/imgs/ncomment.png">{{comment}}</div>
-        <div style="width: 14%"><img class="tip-img" src="../../static/imgs/nsee.png">{{see}}</div>
+        <div style="width: 40%"><img class="tip-img" src="../../static/imgs/ndate.png">{{date}}</div>
+        <div style="width: 28%"><img class="tip-img" src="../../static/imgs/ntime.png">{{time}}</div>
+        <div style="width: 16%"><img class="tip-img" src="../../static/imgs/ncomment.png">{{comment}}</div>
+        <div style="width: 16%"><img class="tip-img" src="../../static/imgs/nsee.png">{{see}}</div>
       </div>
   </a>
 </template>
@@ -57,9 +57,9 @@
 <style scoped>
   .videox {
     height: 160px;
-    margin: 8px 16px 8px 16px;
-    border-radius: 8px;
-    box-shadow: 4px 4px 4px lightgrey;
+    margin: 8px;
+    /*border-radius: 8px;*/
+    box-shadow:0 0 4px darkgray;
   }
 
   .name {
@@ -67,9 +67,25 @@
     color: snow;
     font-size: 15px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 32px;
+    /*border-radius: 8px;*/
+  }
+
+  .mark {
     border-radius: 8px;
+    margin: 6px;
+    font-size: 12px;
+    color: black;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 2px white;
+    text-align: center;
+    width: 48px;
+    line-height: 20px;
+    position: absolute;
+    right: 6px;
   }
 
   .dc-container {
