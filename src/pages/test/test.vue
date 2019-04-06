@@ -36,7 +36,7 @@
 
   export default {
     components: {news, videox, tip},
-    onLoad () {
+    onShow () {
       this.request_mysql()
     },
     onPullDownRefresh () {

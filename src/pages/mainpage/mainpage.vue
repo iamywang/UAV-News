@@ -8,8 +8,11 @@
       <div style="width: 16%"><img class="tip-img" src="../../../static/imgs/nsee.png">{{see}}</div>
     </div>
     <div><wxParse :content=text></wxParse></div>
-<!--    <tip name="相关文章"></tip>-->
-<!--    <div class="relative">{{id}}</div>-->
+    <div class="share">
+      <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/bookmark.png"/>收藏</button>
+      <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/share.png"/>分享</button>
+      <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/feedback.png"/>打赏</button>
+    </div>
     <commentFrame v-bind:commentlist=commentlist v-bind:level=comment v-bind:id=id check="news"></commentFrame>
   </div>
 </template>
@@ -23,29 +26,28 @@
   export default {
     onLoad (option) {
       this.id = option.id
-      this.newsname = option.newsname
-      this.date = option.date
-      this.tag = option.tag
-      this.see = Number(option.see) + 1
-      this.text = option.text
-      this.comment = Number(option.comment)
-      this.commentlist = JSON.parse(option.commentlist)
       const db = wx.cloud.database()
       var _this = this
       db.collection('news').doc(_this.id).get({
         success (res) {
+          _this.newsname = res.data.name
+          _this.date = res.data.date
+          _this.tag = res.data.tag
+          _this.see = res.data.see + 1
           _this.text = res.data.newstext
+          _this.comment = res.data.comment
+          _this.commentlist = res.data.commentlist
+          wx.setNavigationBarTitle({title: _this.newsname})
+          wx.cloud.callFunction({
+            name: 'updateSaw',
+            data: {
+              id: _this.id,
+              type: 'news',
+              see: _this.see
+            }
+          })
         }
       })
-      wx.cloud.callFunction({
-        name: 'updateSaw',
-        data: {
-          id: _this.id,
-          type: 'news',
-          see: _this.see
-        }
-      })
-      wx.setNavigationBarTitle({title: this.newsname})
     },
     onPullDownRefresh () {
       const db = wx.cloud.database()
@@ -134,9 +136,25 @@
     margin: 8px;
   }
 
-  .relative {
-    font-size: 14px;
-    line-height: 32px;
+  .share{
     text-align: center;
+  }
+
+  .share-button {
+    display: inline-block;
+    margin: 8px;
+    width: 100px;
+    height: 36px;
+    border-radius: 16px;
+    border: 1px solid #ebebeb;
+    background: #ebebeb;
+    font-size: 14px;
+  }
+
+  .share-icon {
+    float: left;
+    margin: 4px;
+    width: 24px;
+    height: 24px;
   }
 </style>

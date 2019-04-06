@@ -3,14 +3,17 @@
     <title v-bind:name=this.newsname></title>
     <div class="date_tag">
       <div style="width: 36%"><img class="tip-img" src="../../../static/imgs/ndate.png">{{date}}</div>
-      <div style="width: 20%"><img class="tip-img" src="../../../static/imgs/nuser.png">视频</div>
-      <div style="width: 20%"><img class="tip-img" src="../../../static/imgs/ntime.png">{{tag}}</div>
-      <div style="width: 12%"><img class="tip-img" src="../../../static/imgs/ncomment.png">{{comment}}</div>
-      <div style="width: 12%"><img class="tip-img" src="../../../static/imgs/nsee.png">{{see}}</div>
+      <div style="width: 18%"><img class="tip-img" src="../../../static/imgs/nuser.png">视频</div>
+      <div style="width: 18%"><img class="tip-img" src="../../../static/imgs/ntime.png">{{tag}}</div>
+      <div style="width: 16%"><img class="tip-img" src="../../../static/imgs/ncomment.png">{{comment}}</div>
+      <div style="width: 16%"><img class="tip-img" src="../../../static/imgs/nsee.png">{{see}}</div>
     </div>
     <video src="{{src}}" title="{{newsname}}" style="width: 100%; margin-top: 8px"></video>
-<!--    <tip name="相关视频"></tip>-->
-<!--    <div class="comment">{{id}}</div>-->
+    <div class="share">
+      <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/bookmark.png"/>收藏</button>
+      <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/share.png"/>分享</button>
+      <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/feedback.png"/>打赏</button>
+    </div>
     <commentFrame v-bind:commentlist=commentlist v-bind:level=comment v-bind:id=id check="videos"></commentFrame>
   </div>
 </template>
@@ -23,23 +26,28 @@
   export default {
     onLoad (option) {
       this.id = option.id
-      this.newsname = option.newsname
-      this.date = option.date
-      this.tag = option.tag
-      this.see = Number(option.see) + 1
-      this.src = option.src
-      this.comment = Number(option.comment)
-      this.commentlist = JSON.parse(option.commentlist)
+      const db = wx.cloud.database()
       var _this = this
-      wx.cloud.callFunction({
-        name: 'updateSaw',
-        data: {
-          id: _this.id,
-          type: 'videos',
-          see: _this.see
+      db.collection('videos').doc(_this.id).get({
+        success (res) {
+          _this.newsname = res.data.name
+          _this.date = res.data.date
+          _this.tag = res.data.time
+          _this.see = res.data.see + 1
+          _this.src = res.data.videosrc
+          _this.comment = res.data.comment
+          _this.commentlist = res.data.commentlist
+          wx.setNavigationBarTitle({title: _this.newsname})
+          wx.cloud.callFunction({
+            name: 'updateSaw',
+            data: {
+              id: _this.id,
+              type: 'videos',
+              see: _this.see
+            }
+          })
         }
       })
-      wx.setNavigationBarTitle({title: this.newsname})
     },
     onPullDownRefresh () {
       const db = wx.cloud.database()
@@ -126,9 +134,25 @@
     margin: 8px;
   }
 
-  .comment {
-    font-size: 14px;
-    line-height: 32px;
+  .share{
     text-align: center;
+  }
+
+  .share-button {
+    display: inline-block;
+    margin: 8px;
+    width: 100px;
+    height: 36px;
+    border-radius: 16px;
+    border: 1px solid #ebebeb;
+    background: #ebebeb;
+    font-size: 14px;
+  }
+
+  .share-icon {
+    float: left;
+    margin: 4px;
+    width: 24px;
+    height: 24px;
   }
 </style>

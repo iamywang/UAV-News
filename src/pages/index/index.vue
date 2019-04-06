@@ -10,23 +10,17 @@
         <cirbutton v-bind:name=item.name v-bind:color=item.color v-bind:pic=item.pic v-bind:corner=item.corner
                    v-for="item in leftlist" :key="item.name"></cirbutton>
       </div>
-      <div style="margin: 4px">
-        <settingitem src="../../static/imgs/comment.png" text="我的评论"></settingitem>
-        <settingitem src="../../static/imgs/bookmark.png" text="我的收藏"></settingitem>
-        <settingitem src="../../static/imgs/message.png" text="我的消息"></settingitem>
-      </div>
-      <div style="margin: 4px">
-        <settingitem src="../../static/imgs/feedback.png" text="产品反馈"></settingitem>
-        <settingitem src="../../static/imgs/share.png" text="分享"></settingitem>
-      </div>
-      <div style="margin: 4px">
-        <settingitem src="../../static/imgs/setting.png" text="设置"></settingitem>
-      </div>
+      <settingitem src="../../static/imgs/comment.png" text="我的评论"></settingitem>
+      <settingitem src="../../static/imgs/bookmark.png" text="我的收藏"></settingitem>
+      <settingitem src="../../static/imgs/message.png" text="我的消息"></settingitem>
+      <settingitem src="../../static/imgs/feedback.png" text="产品反馈"></settingitem>
+      <settingitem src="../../static/imgs/share.png" text="分享"></settingitem>
+      <settingitem src="../../static/imgs/setting.png" text="设置"></settingitem>
     </div>
     <div class="right-center {{open ? 'c-state1' : ''}}">
       <div class="notice">
         <img src="../../../static/imgs/broadcast.png" style="float: left; margin: 4px; width: 24px; height: 24px"/>
-        公告栏：暂无公告——2019.4.4
+        公告栏：2019.4.6 Version 1.1.0
       </div>
       <div class="tab-changer">
         <img src="../../../static/imgs/more.png" style="width: 18px; height: 18px; margin: 4px" v-on:click="slide"/>
@@ -36,7 +30,7 @@
         <div class="tab-item {{currentTab == 3 ? 'on' : ''}}" v-on:click="setTab(3)">数据</div>
         <div class="tab-item {{currentTab == 4 ? 'on' : ''}}" v-on:click="setTab(4)">专题</div>
       </div>
-      <swiper style="height: 920px" current="{{currentTab}}" @change="swiperChange">
+      <swiper style="height: 1000px" current="{{currentTab}}" @change="swiperChange">
         <!--页面0-->
         <swiper-item>
           <searchbox></searchbox>
@@ -57,7 +51,7 @@
                       v-bind:tag=newslist[count-1].tag v-bind:comment=newslist[count-1].comment
                       v-bind:text=newslist[count-1].newstext v-bind:pic=newslist[count-1].newsback
                       v-bind:commentlist=JSON.stringify(newslist[count-1].commentlist) v-bind:id=newslist[count-1]._id
-                      v-bind:see=newslist[count-1].see></news>
+                      v-bind:see=newslist[count-1].see v-bind:hot=true></news>
               </div>
             </div>
             <tip name="最新视频"></tip>
@@ -88,7 +82,7 @@
           <div v-for="item in newslist" v-if="item.see > 50" :key="item._id">
             <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
                   v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
-                  v-bind:id=item._id v-bind:see=item.see></news>
+                  v-bind:id=item._id v-bind:see=item.see v-bind:hot=true></news>
           </div>
           <tip name="Top 观"></tip>
           <div v-for="item in videolist" v-if="item.see > 50" :key="item._id">
@@ -169,7 +163,7 @@
 
   export default {
     components: {news, videox, tip, uavitem, searchbox, cirbutton, comment, settingitem},
-    onLoad () {
+    onShow () {
       wx.cloud.init({
         env: 'ywang-env-4a3998'
       })

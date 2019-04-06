@@ -2,6 +2,7 @@
   <div class="button-plus">
     <div>
       <div class="corner" v-if="corner>0">{{corner}}</div>
+      <div class="corner" style="background: rgba(0,0,0,0)" v-if="corner===0"></div>
       <img class="img" src="{{pic}}">
     </div>
     <div class="button-text">
@@ -46,6 +47,7 @@
     font-size: 13px;
     width: 20px;
     line-height: 20px;
+    height: 20px;
     color: white;
     background: rgba(255, 0, 0, 0.8);
     border-radius: 100%;
@@ -54,6 +56,7 @@
     top: 0;
     right: 20px;
   }
+
   .img {
     border-radius: 100%;
     width: 44px;
@@ -62,6 +65,7 @@
 
   .button-text {
     float: bottom;
+    width: 72px;
     line-height: 28px;
     font-size: 14px;
   }

@@ -20,7 +20,7 @@
   import tip from '../../components/tip'
 
   export default {
-    onLoad () {
+    onShow () {
       var that = this
       wx.getUserInfo({
         success (res) {
@@ -101,7 +101,7 @@
         var hour = date.getHours()
         var minute = date.getMinutes()
 
-        return [year, month, day].map(this.formatNumber).join('.') + ' ' + [hour, minute].map(this.formatNumber).join(':')
+        return [year, month, day].join('.') + ' ' + [hour, minute].map(this.formatNumber).join(':')
       }
     }
   }

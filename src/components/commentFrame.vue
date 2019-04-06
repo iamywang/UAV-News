@@ -1,6 +1,5 @@
 <template>
   <div class="comment">
-    <tip name="发表评论"></tip>
     <div class="name-container">
       <img class="head-img" src="{{pic}}">
       <div class="name">{{username}}</div>
@@ -8,10 +7,11 @@
     </div>
     <div class="comment-push">
       <div class="input-container">
-        <img class="input-img" src="../../static/imgs/comment.png">
+<!--        <img class="input-img" src="../../static/imgs/comment.png">-->
         <input class="input" type="text" placeholder="请输入评论..." v-model="value">
       </div>
-      <button class="push-button" open-type="getUserInfo" v-on:click="pushComment">发表评论</button>
+      <button class="push-button" open-type="getUserInfo" v-on:click="pushComment">
+        <img class="push-image" src="../../static/imgs/send.png"/>评论</button>
     </div>
     <tip name="热门评论"></tip>
     <div v-for="item in commentlist" v-if="item.like>100" :key="item.level">
@@ -74,8 +74,7 @@
     data () {
       return {
         value: '',
-        flag: 'visible',
-        testlist: ''
+        flag: 'visible'
       }
     },
     methods: {
@@ -110,7 +109,6 @@
               'date': that.formatTime(new Date()),
               'level': that.level + 1,
               'like': 0}
-            that.testlist = JSON.stringify(that.commentlist)
           }
         })
         wx.cloud.callFunction({
@@ -119,7 +117,7 @@
             id: that.id,
             type: that.check,
             comment: that.level,
-            commentlist: that.testlist
+            commentlist: JSON.stringify(that.commentlist)
           },
           complete: res => {
             that.level = that.level + 1
@@ -144,7 +142,7 @@
         var minute = date.getMinutes()
         var second = date.getSeconds()
 
-        return [year, month, day].map(this.formatNumber).join('.') + ' ' + [hour, minute, second].map(this.formatNumber).join(':')
+        return [year, month, day].join('.') + ' ' + [hour, minute, second].map(this.formatNumber).join(':')
       },
       addlike (msg) {
         this.commentlist[msg[1] - 1].like = msg[0]
@@ -165,6 +163,9 @@
 </script>
 
 <style scoped>
+  .comment{
+    border-top: 1px solid lightgray;
+  }
   .comment-push {
     margin: 4px;
     height: 36px;
@@ -207,29 +208,30 @@
     height: 36px;
     width: 75%;
   }
-  .input-img {
-    float: left;
-    margin: 4px;
-    width: 28px;
-    height: 28px;
-  }
 
   .input {
-    border-bottom: 2px solid #708090;
-    margin-right: 8px;
+    background: #f5f5f5;
+    margin: 4px;
     font-size: 15px;
-    line-height: 36px;
-    height: 36px;
+    line-height: 28px;
+    height: 28px;
   }
 
   .push-button {
     width: 25%;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 28px;
-    background: #708090;
-    color: white;
-    outline: none;
+    background: white;
+    border: 1px solid #f5f5f5;
+    border-radius: 8px;
     height: 28px;
     margin: 4px;
+  }
+
+  .push-image {
+    float: left;
+    margin: 4px;
+    width: 20px;
+    height: 20px;
   }
 </style>

@@ -4,7 +4,6 @@
         <img class="head" src="{{head}}">
         <div class="name-container">
           <div class="name">{{name}}
-            <!--<img class="lm-pic" src="../../static/imgs/level.png"/>-->
             <div class="level">{{level}} 楼</div>
           </div>
           <div class="loc_model">
@@ -16,8 +15,11 @@
       <div class="content"><wxParse :content=text></wxParse></div>
       <div class="bottom">
         <div class="date">{{date}}</div>
-        <img class="like-pic" src="../../static/imgs/like.png" v-on:click="addlike"/>
-        <div class="like">{{like}}</div>
+        <div class="review">回复</div>
+        <div style="width: 30%"></div>
+        <div class="like" v-on:click="addlike">
+          <img class="like-pic" src="../../static/imgs/like.png"/>{{like}}
+        </div>
       </div>
     </div>
 </template>
@@ -111,27 +113,23 @@
     float: left;
     margin: 4px;
     width: 12px;
-    height: 12px
+    height: 12px;
   }
 
   .level {
-    text-align: center;
     font-size: 14px;
-    margin: 4px;
+    margin-right: 8px;
     float: right;
-    width: 48px;
     line-height: 20px;
-    border-radius: 8px;
-    color: white;
-    background: rgba(255, 69, 0, 0.75);
-    box-shadow: 0 0 2px darkorange;
+    height: 20px;
+    color: gray;
   }
 
   .content {
     line-height: 22px;
     font-size: 14px;
     text-align: left;
-    margin-left: 36px;
+    margin-left: 44px;
     margin-top: 8px;
     margin-bottom: 8px;
     min-height: 44px;
@@ -139,27 +137,45 @@
 
   .bottom {
     float: bottom;
-    text-align: right;
     font-size: 13px;
-    margin-right: 8px;
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    line-height: 24px;
   }
 
   .date {
-    float: left;
-    display: inline-block;
-    margin-left: 4px;
-    color: black;
+    margin-left: 44px;
+    color: lightslategray;
+    width: 50%;
   }
 
-  .like-pic {
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    margin-right: 4px;
+  .review {
+    width: 64px;
+    border-radius: 12px;
+    line-height: 20px;
+    margin: 2px;
+    background: #ebebeb;
+    text-align: center;
   }
 
   .like {
-    display: inline-block;
-    color: #708090;
+    width: 20%;
+    border-radius: 16px;
+    text-align: left;
+    color: white;
+    line-height: 20px;
+    height: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 8px;
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  .like-pic {
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin: 2px 6px;
   }
 </style>

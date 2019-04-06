@@ -17,8 +17,8 @@
     <tip name="程序信息"></tip>
     <div class="version">名称：无人机小程序</div>
     <div class="version">开发者：iamywang</div>
-    <div class="version">版本：1.0.19</div>
-    <div class="version">更新时间：2019.4.5</div>
+    <div class="version">版本：1.1.0</div>
+    <div class="version">更新时间：2019.4.6</div>
   </div>
 </template>
 

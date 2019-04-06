@@ -28,7 +28,7 @@
 
   export default {
     components: {videox, tip, cirbutton},
-    onLoad () {
+    onShow () {
       const db = wx.cloud.database()
       var _this = this
       db.collection('videos').orderBy('_id', 'desc').get({

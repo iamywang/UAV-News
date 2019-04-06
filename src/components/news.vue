@@ -1,7 +1,7 @@
 <template>
   <a class="news"
-     href="../mainpage/main?newsname={{name}}&date={{date}}&id={{id}}&tag={{tag}}&see={{see}}&text={{text}}&commentlist={{commentlist}}&comment={{comment}}">
-    <div class="mark">HOT</div>
+     href="../mainpage/main?id={{id}}">
+    <div class="mark" v-if="hot">热门</div>
     <div class="name">{{name}}</div>
     <div class="main-container">
       <img class="img" src="{{pic}}">
@@ -54,6 +54,10 @@
       see: {
         type: Number,
         default: 0
+      },
+      hot: {
+        type: Boolean,
+        default: false
       }
     }
   }

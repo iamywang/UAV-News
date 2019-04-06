@@ -52,7 +52,10 @@
         var _this = this
         if (_this.key !== '') {
           db.collection('news').orderBy('_id', 'desc').where({
-            tag: _this.key
+            name: db.RegExp({
+              regexp: _this.key,
+              options: 'i'
+            })
           }).get({
             success (res) {
               _this.reslist = res.data

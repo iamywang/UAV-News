@@ -20,7 +20,7 @@
 
   export default {
     components: {news, tip, cirbutton},
-    onLoad () {
+    onShow () {
       const db = wx.cloud.database()
       var _this = this
       db.collection('news').orderBy('_id', 'desc').where({

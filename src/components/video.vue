@@ -1,5 +1,5 @@
 <template>
-  <a class="videox" href="../videopage/main?newsname={{name}}&date={{date}}&id={{id}}&tag={{time}}&see={{see}}&commentlist={{commentlist}}&comment={{comment}}&src={{src}}">
+  <a class="videox" href="../videopage/main?id={{id}}">
     <div class="mark">视频</div>
     <div class="name"  style="background: url({{back}}) no-repeat;background-size: cover;-moz-background-size: cover;-webkit-background-size: cover;-o-background-size: cover">{{name}}</div>
     <div class="dc-container">
