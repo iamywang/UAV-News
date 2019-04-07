@@ -19,11 +19,10 @@
       <div class="hot">环球网</div>
       <div class="hot">无人机之家</div>
     </div>
-    <tip name="结果"></tip>
+    <tip name="搜索结果"></tip>
     <div v-for="item in reslist" :key="item._id">
       <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
-            v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
-            v-bind:id=item._id></news>
+            v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:see=item.see v-bind:id=item._id marktag="搜索"></news>
     </div>
   </div>
 </template>
@@ -48,15 +47,13 @@
     },
     methods: {
       search () {
-        const db = wx.cloud.database()
         var _this = this
         if (_this.key !== '') {
-          db.collection('news').orderBy('_id', 'desc').where({
-            name: db.RegExp({
-              regexp: _this.key,
-              options: 'i'
-            })
-          }).get({
+          wx.request({
+            url: 'http://10.27.246.15:8000/allSearch/',
+            data: {
+              key: _this.key
+            },
             success (res) {
               _this.reslist = res.data
               _this.hislist[_this.hislist.length] = _this.key

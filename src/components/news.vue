@@ -1,7 +1,7 @@
 <template>
   <a class="news"
      href="../mainpage/main?id={{id}}">
-    <div class="mark" v-if="hot">热门</div>
+    <div class="mark" v-if="marktag">{{marktag}}</div>
     <div class="name">{{name}}</div>
     <div class="main-container">
       <img class="img" src="{{pic}}">
@@ -43,10 +43,6 @@
         type: String,
         default: ''
       },
-      commentlist: {
-        type: String,
-        default: ''
-      },
       id: {
         type: String,
         default: ''
@@ -55,9 +51,9 @@
         type: Number,
         default: 0
       },
-      hot: {
-        type: Boolean,
-        default: false
+      marktag: {
+        type: String,
+        default: ''
       }
     }
   }
@@ -108,6 +104,7 @@
     height: 80px;
     margin: 8px;
     border-radius: 8px;
+    box-shadow: 0 0 4px lightgray;
   }
 
   .text {

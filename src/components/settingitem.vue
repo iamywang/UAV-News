@@ -19,7 +19,7 @@
       },
       url: {
         type: String,
-        default: '../test/main'
+        default: ''
       }
     },
     data () {

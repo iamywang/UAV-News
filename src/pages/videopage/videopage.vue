@@ -26,49 +26,46 @@
   export default {
     onLoad (option) {
       this.id = option.id
-      const db = wx.cloud.database()
+      this.request_mysql()
       var _this = this
-      db.collection('videos').doc(_this.id).get({
+      wx.request({
+        url: 'http://10.27.246.15:8000/updateVideoSaw/',
+        data: {
+          id: _this.id
+        },
         success (res) {
-          _this.newsname = res.data.name
-          _this.date = res.data.date
-          _this.tag = res.data.time
-          _this.see = res.data.see + 1
-          _this.src = res.data.videosrc
-          _this.comment = res.data.comment
-          _this.commentlist = res.data.commentlist
-          wx.setNavigationBarTitle({title: _this.newsname})
-          wx.cloud.callFunction({
-            name: 'updateSaw',
-            data: {
-              id: _this.id,
-              type: 'videos',
-              see: _this.see
-            }
-          })
+          _this.request_mysql()
         }
       })
     },
     onPullDownRefresh () {
-      const db = wx.cloud.database()
-      var _this = this
-      db.collection('videos').doc(_this.id).get({
-        success (res) {
-          _this.id = res.data._id
-          _this.newsname = res.data.name
-          _this.date = res.data.date
-          _this.tag = res.data.time
-          _this.see = res.data.see
-          _this.src = res.data.videosrc
-          _this.comment = res.data.comment
-          _this.commentlist = res.data.commentlist
-          wx.stopPullDownRefresh()
-        }
-      })
+      this.request_mysql()
+      wx.stopPullDownRefresh()
     },
     onShareAppMessage () {
       return {
         title: this.newsname
+      }
+    },
+    methods: {
+      request_mysql () {
+        var _this = this
+        wx.request({
+          url: 'http://10.27.246.15:8000/getOneVideo/',
+          data: {
+            id: _this.id
+          },
+          success (res) {
+            _this.newsname = res.data.name
+            _this.date = res.data.date
+            _this.tag = res.data.time
+            _this.see = res.data.see
+            _this.src = res.data.videosrc
+            _this.comment = res.data.comment
+            _this.commentlist = res.data.commentlist
+            wx.setNavigationBarTitle({title: _this.newsname})
+          }
+        })
       }
     },
     components: {title, tip, commentFrame},

@@ -67,21 +67,17 @@
             that.pic = userInfo.avatarUrl
           }
         })
-        wx.cloud.callFunction({
-          name: 'addArticles',
+        wx.request({
+          url: 'http://10.27.246.15:8000/insertArticle/',
           data: {
-            comment: 0,
-            commentlist: [],
-            date: that.date,
+            id: 'article' + that.date,
             name: that.newsname,
-            newsback: that.pic,
-            newstext: '<p>' + that.text + '</p>' + '<p><img src="' + that.pic + '"/></p>',
+            date: that.date,
             tag: that.tag,
-            see: 0
+            newsback: that.pic,
+            newstext: '<p>' + that.text + '</p>' + '<p><img src="' + that.pic + '"/></p>'
           },
-          complete: res => {
-            that.newsname = ''
-            that.text = ''
+          success (res) {
             wx.showModal({
               title: '提示信息',
               content: '发表成功！'

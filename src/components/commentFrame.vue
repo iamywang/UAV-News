@@ -10,8 +10,9 @@
 <!--        <img class="input-img" src="../../static/imgs/comment.png">-->
         <input class="input" type="text" placeholder="请输入评论..." v-model="value">
       </div>
-      <button class="push-button" open-type="getUserInfo" v-on:click="pushComment">
-        <img class="push-image" src="../../static/imgs/send.png"/>评论</button>
+      <a class="push-box" open-type="getUserInfo" v-on:click="pushComment">
+        <img class="push-image" src="../../static/imgs/send.png"/>
+      </a>
     </div>
     <tip name="热门评论"></tip>
     <div v-for="item in commentlist" v-if="item.like>100" :key="item.level">
@@ -109,22 +110,26 @@
               'date': that.formatTime(new Date()),
               'level': that.level + 1,
               'like': 0}
-          }
-        })
-        wx.cloud.callFunction({
-          name: 'updateComments',
-          data: {
-            id: that.id,
-            type: that.check,
-            comment: that.level,
-            commentlist: JSON.stringify(that.commentlist)
-          },
-          complete: res => {
-            that.level = that.level + 1
-            that.value = ''
-            wx.showModal({
-              title: '提示信息',
-              content: '评论成功！'
+            wx.request({
+              url: 'http://10.27.246.15:8000/addComment/',
+              data: {
+                id: that.id,
+                type: that.check,
+                head: userInfo.avatarUrl,
+                date: that.formatTime(new Date()),
+                name: userInfo.nickName,
+                location: userInfo.country,
+                model: model,
+                text: that.value
+              },
+              success (res) {
+                that.level = that.level + 1
+                that.value = ''
+                wx.showModal({
+                  title: '提示信息',
+                  content: '评论成功！'
+                })
+              }
             })
           }
         })
@@ -147,14 +152,18 @@
       addlike (msg) {
         this.commentlist[msg[1] - 1].like = msg[0]
         var that = this
-        that.testlist = JSON.stringify(that.commentlist)
-        wx.cloud.callFunction({
-          name: 'updateComments',
+        wx.request({
+          url: 'http://10.27.246.15:8000/addLike/',
           data: {
             id: that.id,
             type: that.check,
-            comment: that.level,
-            commentlist: that.testlist
+            level: that.level
+          },
+          success (res) {
+            wx.showModal({
+              title: '提示信息',
+              content: '点赞成功！'
+            })
           }
         })
       }
@@ -206,7 +215,7 @@
 
   .input-container {
     height: 36px;
-    width: 75%;
+    width: 85%;
   }
 
   .input {
@@ -217,19 +226,15 @@
     height: 28px;
   }
 
-  .push-button {
-    width: 25%;
-    font-size: 14px;
-    line-height: 28px;
-    background: white;
-    border: 1px solid #f5f5f5;
-    border-radius: 8px;
+  .push-box {
+    width: 15%;
+    background: #f5f5f5;
     height: 28px;
     margin: 4px;
+    text-align: center;
   }
 
   .push-image {
-    float: left;
     margin: 4px;
     width: 20px;
     height: 20px;

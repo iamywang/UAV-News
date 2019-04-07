@@ -1,14 +1,14 @@
 <template>
-  <div class="button-plus">
+  <a class="button-plus" href="">
     <div>
       <div class="corner" v-if="corner>0">{{corner}}</div>
       <div class="corner" style="background: rgba(0,0,0,0)" v-if="corner===0"></div>
       <img class="img" src="{{pic}}">
     </div>
     <div class="button-text">
-      <div style="color:{{color}}; width: 52px; float: left">{{name}}</div>
+      <div style="color:{{color}}">{{name}}</div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -51,22 +51,27 @@
     color: white;
     background: rgba(255, 0, 0, 0.8);
     border-radius: 100%;
-    float: right;
+    float: left;
     position: relative;
-    top: 0;
-    right: 20px;
+    top: 4px;
+    left: 42px;
+    z-index: 1;
   }
 
   .img {
+    position: relative;
     border-radius: 100%;
+    left: -10px;
+    margin: 4px;
     width: 44px;
     height: 44px;
+    z-index: 0;
   }
 
   .button-text {
     float: bottom;
     width: 72px;
-    line-height: 28px;
+    line-height: 20px;
     font-size: 14px;
   }
 </style>

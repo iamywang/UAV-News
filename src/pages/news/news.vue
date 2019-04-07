@@ -7,8 +7,7 @@
     </div>
     <div v-for="item in newslist" :key="item._id">
       <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
-            v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
-            v-bind:id=item._id v-bind:see=item.see></news>
+            v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:id=item._id v-bind:see=item.see></news>
     </div>
   </div>
 </template>
@@ -21,22 +20,24 @@
   export default {
     components: {news, tip, cirbutton},
     onShow () {
-      const db = wx.cloud.database()
       var _this = this
-      db.collection('news').orderBy('_id', 'desc').where({
-        type: 'news'
-      }).get({
+      wx.request({
+        url: 'http://10.27.246.15:8000/search/',
+        data: {
+          key: 'news'
+        },
         success (res) {
           _this.newslist = res.data
         }
       })
     },
     onPullDownRefresh () {
-      const db = wx.cloud.database()
       var _this = this
-      db.collection('news').orderBy('_id', 'desc').where({
-        type: 'news'
-      }).get({
+      wx.request({
+        url: 'http://10.27.246.15:8000/search/',
+        data: {
+          key: 'news'
+        },
         success (res) {
           _this.newslist = res.data
         }

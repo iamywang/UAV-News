@@ -30,15 +30,7 @@
         type: Number,
         default: 0
       },
-      src: {
-        type: String,
-        default: ''
-      },
       back: {
-        type: String,
-        default: ''
-      },
-      commentlist: {
         type: String,
         default: ''
       },
@@ -67,7 +59,7 @@
     color: snow;
     font-size: 15px;
     font-weight: bold;
-    text-align: left;
+    text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 32px;

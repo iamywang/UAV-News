@@ -20,7 +20,7 @@
     <div class="right-center {{open ? 'c-state1' : ''}}">
       <div class="notice">
         <img src="../../../static/imgs/broadcast.png" style="float: left; margin: 4px; width: 24px; height: 24px"/>
-        公告栏：2019.4.6 Version 1.1.0
+        公告栏：云开发全部迁移至Django and MySQL
       </div>
       <div class="tab-changer">
         <img src="../../../static/imgs/more.png" style="width: 18px; height: 18px; margin: 4px" v-on:click="slide"/>
@@ -50,15 +50,13 @@
                 <news v-bind:name=newslist[count-1].name v-bind:date=newslist[count-1].date
                       v-bind:tag=newslist[count-1].tag v-bind:comment=newslist[count-1].comment
                       v-bind:text=newslist[count-1].newstext v-bind:pic=newslist[count-1].newsback
-                      v-bind:commentlist=JSON.stringify(newslist[count-1].commentlist) v-bind:id=newslist[count-1]._id
-                      v-bind:see=newslist[count-1].see v-bind:hot=true></news>
+                      v-bind:id=newslist[count-1]._id v-bind:see=newslist[count-1].see marktag="最新"></news>
               </div>
             </div>
             <tip name="最新视频"></tip>
             <div v-if="videolist[0]">
               <videox v-bind:name=videolist[0].name v-bind:date=videolist[0].date v-bind:time=videolist[0].time
-                      v-bind:comment=videolist[0].comment v-bind:src=videolist[0].videosrc
-                      v-bind:back=videolist[0].videoback v-bind:commentlist=JSON.stringify(videolist[0].commentlist)
+                      v-bind:comment=videolist[0].comment v-bind:back=videolist[0].videoback
                       v-bind:id=videolist[0]._id v-bind:see=videolist[0].see></videox>
             </div>
           </div>
@@ -81,21 +79,18 @@
           <tip name="Top 读"></tip>
           <div v-for="item in newslist" v-if="item.see > 50" :key="item._id">
             <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
-                  v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
-                  v-bind:id=item._id v-bind:see=item.see v-bind:hot=true></news>
+                  v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:id=item._id v-bind:see=item.see marktag="Top"></news>
           </div>
           <tip name="Top 观"></tip>
           <div v-for="item in videolist" v-if="item.see > 50" :key="item._id">
             <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-                    v-bind:src=item.videosrc v-bind:back=item.videoback
-                    v-bind:commentlist=JSON.stringify(item.commentlist) v-bind:id=item._id v-bind:see=item.see></videox>
+                    v-bind:back=item.videoback v-bind:id=item._id v-bind:see=item.see></videox>
           </div>
           <tip name="Top 评"></tip>
           <div v-if="newslist[0]">
             <div v-for="item in newslist[0].commentlist" v-if="item.like > 100" :key="item.level">
               <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
-                       v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level
-                       v-bind:like=item.like></comment>
+                       v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like></comment>
             </div>
           </div>
         </swiper-item>
@@ -104,8 +99,7 @@
           <searchbox></searchbox>
           <div v-for="item in articlelist" :key="item._id">
             <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
-                  v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:commentlist=JSON.stringify(item.commentlist)
-                  v-bind:id=item._id v-bind:see=item.see></news>
+                  v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:id=item._id v-bind:see=item.see marktag="部落"></news>
           </div>
         </swiper-item>
         <!--页面3-->
@@ -139,10 +133,9 @@
           <div v-if="newslist[0]">
             <div v-for="count in latestnum" :key="count">
               <news v-bind:name=newslist[count-1].name v-bind:date=newslist[count-1].date
-                    v-bind:tag=newslist[count-1].tag v-bind:comment=newslist[count-1].comment
+                    v-bind:tag=newslist[count-1].tag  v-bind:comment=newslist[count-1].comment
                     v-bind:text=newslist[count-1].newstext v-bind:pic=newslist[count-1].newsback
-                    v-bind:commentlist=JSON.stringify(newslist[count-1].commentlist) v-bind:id=newslist[count-1]._id
-                    v-bind:see=newslist[count-1].see></news>
+                    v-bind:id=newslist[count-1]._id v-bind:see=newslist[count-1].see marktag="专栏"></news>
             </div>
           </div>
         </swiper-item>
@@ -167,7 +160,7 @@
       wx.cloud.init({
         env: 'ywang-env-4a3998'
       })
-      this.refresh_cloud()
+      this.request_mysql()
       var that = this
       wx.getUserInfo({
         success (res) {
@@ -178,7 +171,7 @@
       })
     },
     onPullDownRefresh () {
-      this.refresh_cloud()
+      this.request_mysql()
       wx.stopPullDownRefresh()
     },
     data () {
@@ -224,36 +217,42 @@
       }
     },
     methods: {
-      refresh_cloud () {
-        const db = wx.cloud.database()
+      request_mysql () {
         var _this = this
-        db.collection('news').orderBy('_id', 'desc').where({
-          type: 'news'
-        }).get({
-          success (res) {
-            _this.newslist = res.data
-          }
-        })
-        db.collection('pics').orderBy('_id', 'desc').get({
+        wx.request({
+          url: 'http://10.27.246.15:8000/search/',
+          data: {
+            key: 'pics'
+          },
           success (res) {
             _this.piclist = res.data
           }
         })
-        db.collection('videos').orderBy('_id', 'desc').get({
+        wx.request({
+          url: 'http://10.27.246.15:8000/search/',
+          data: {
+            key: 'news'
+          },
           success (res) {
-            _this.videolist = res.data
+            _this.newslist = res.data
           }
         })
-        db.collection('lives').orderBy('_id', 'desc').get({
-          success (res) {
-            _this.livelist = res.data
-          }
-        })
-        db.collection('news').orderBy('_id', 'desc').where({
-          type: 'article'
-        }).get({
+        wx.request({
+          url: 'http://10.27.246.15:8000/search/',
+          data: {
+            key: 'article'
+          },
           success (res) {
             _this.articlelist = res.data
+          }
+        })
+        wx.request({
+          url: 'http://10.27.246.15:8000/search/',
+          data: {
+            key: 'videos'
+          },
+          success (res) {
+            _this.videolist = res.data
           }
         })
       },
@@ -362,7 +361,8 @@
     background-color: lightyellow;
     margin-bottom: 4px;
   }
-  .hotword-box{
+
+  .hotword-box {
     color: darkslategray;
     font-size: 15px;
     text-align: center;
@@ -383,12 +383,14 @@
   .button-group {
     text-align: center;
   }
-  .tab-item{
+
+  .tab-item {
     width: 20%;
     text-align: center;
     font-size: 15px;
     height: 26px;
   }
+
   .on {
     color: #708090;
     border-bottom: 3px solid #708090;
@@ -403,7 +405,7 @@
 
   .active {
     transform: scale(1.12);
-    transition:all .2s ease-in 0s;
+    transition: all .2s ease-in 0s;
     z-index: 20;
   }
 </style>
