@@ -68,7 +68,7 @@
           }
         })
         wx.request({
-          url: 'http://10.27.246.15:8000/insertArticle/',
+          url: 'http://localhost:8000/insertArticle/',
           data: {
             id: 'article' + that.date,
             name: that.newsname,
@@ -78,6 +78,8 @@
             newstext: '<p>' + that.text + '</p>' + '<p><img src="' + that.pic + '"/></p>'
           },
           success (res) {
+            that.newsname = ''
+            that.text = ''
             wx.showModal({
               title: '提示信息',
               content: '发表成功！'

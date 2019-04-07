@@ -1,5 +1,5 @@
 <template>
-  <a class="button-plus" href="">
+  <a class="button-plus" href="{{url}}">
     <div>
       <div class="corner" v-if="corner>0">{{corner}}</div>
       <div class="corner" style="background: rgba(0,0,0,0)" v-if="corner===0"></div>
@@ -21,6 +21,10 @@
       pic: {
         type: String,
         default: ''
+      },
+      url: {
+        type: String,
+        default: '../errorpage/main'
       },
       color: {
         type: String,

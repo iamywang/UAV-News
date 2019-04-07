@@ -111,7 +111,7 @@
               'level': that.level + 1,
               'like': 0}
             wx.request({
-              url: 'http://10.27.246.15:8000/addComment/',
+              url: 'http://localhost:8000/addComment/',
               data: {
                 id: that.id,
                 type: that.check,
@@ -153,17 +153,13 @@
         this.commentlist[msg[1] - 1].like = msg[0]
         var that = this
         wx.request({
-          url: 'http://10.27.246.15:8000/addLike/',
+          url: 'http://localhost:8000/addLike/',
           data: {
             id: that.id,
             type: that.check,
-            level: that.level
+            level: msg[1]
           },
           success (res) {
-            wx.showModal({
-              title: '提示信息',
-              content: '点赞成功！'
-            })
           }
         })
       }

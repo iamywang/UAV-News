@@ -19,7 +19,7 @@
       },
       url: {
         type: String,
-        default: ''
+        default: '../errorpage/main'
       }
     },
     data () {

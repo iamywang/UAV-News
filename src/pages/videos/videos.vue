@@ -31,7 +31,7 @@
     onShow () {
       var _this = this
       wx.request({
-        url: 'http://10.27.246.15:8000/search/',
+        url: 'http://localhost:8000/search/',
         data: {
           key: 'videos'
         },
@@ -44,7 +44,7 @@
     onPullDownRefresh () {
       var _this = this
       wx.request({
-        url: 'http://10.27.246.15:8000/search/',
+        url: 'http://localhost:8000/search/',
         data: {
           key: 'videos'
         },

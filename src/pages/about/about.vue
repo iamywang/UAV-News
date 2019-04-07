@@ -38,7 +38,7 @@
         default: '点击登录'
       }
     },
-    onLoad () {
+    onShow () {
       var that = this
       wx.getUserInfo({
         success (res) {

@@ -30,7 +30,7 @@
         <div class="tab-item {{currentTab == 3 ? 'on' : ''}}" v-on:click="setTab(3)">数据</div>
         <div class="tab-item {{currentTab == 4 ? 'on' : ''}}" v-on:click="setTab(4)">专题</div>
       </div>
-      <swiper style="height: 1000px" current="{{currentTab}}" @change="swiperChange">
+      <swiper style="height: 930px" current="{{currentTab}}" @change="swiperChange">
         <!--页面0-->
         <swiper-item>
           <searchbox></searchbox>
@@ -220,7 +220,7 @@
       request_mysql () {
         var _this = this
         wx.request({
-          url: 'http://10.27.246.15:8000/search/',
+          url: 'http://localhost:8000/search/',
           data: {
             key: 'pics'
           },
@@ -229,7 +229,7 @@
           }
         })
         wx.request({
-          url: 'http://10.27.246.15:8000/search/',
+          url: 'http://localhost:8000/search/',
           data: {
             key: 'news'
           },
@@ -238,7 +238,7 @@
           }
         })
         wx.request({
-          url: 'http://10.27.246.15:8000/search/',
+          url: 'http://localhost:8000/search/',
           data: {
             key: 'article'
           },
@@ -247,7 +247,7 @@
           }
         })
         wx.request({
-          url: 'http://10.27.246.15:8000/search/',
+          url: 'http://localhost:8000/search/',
           data: {
             key: 'videos'
           },

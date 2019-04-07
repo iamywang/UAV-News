@@ -29,7 +29,7 @@
       this.request_mysql()
       var _this = this
       wx.request({
-        url: 'http://10.27.246.15:8000/updateVideoSaw/',
+        url: 'http://localhost:8000/updateVideoSaw/',
         data: {
           id: _this.id
         },
@@ -51,7 +51,7 @@
       request_mysql () {
         var _this = this
         wx.request({
-          url: 'http://10.27.246.15:8000/getOneVideo/',
+          url: 'http://localhost:8000/getOneVideo/',
           data: {
             id: _this.id
           },
