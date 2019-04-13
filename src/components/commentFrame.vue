@@ -1,18 +1,20 @@
 <template>
   <div class="comment">
-    <div class="name-container">
-      <img class="head-img" src="{{pic}}">
-      <div class="name">{{username}}</div>
-      <button class="get-button" open-type="getUserInfo" v-on:click="getInfo" style="visibility: {{flag}}">登录</button>
-    </div>
-    <div class="comment-push">
-      <div class="input-container">
-<!--        <img class="input-img" src="../../static/imgs/comment.png">-->
-        <input class="input" type="text" placeholder="请输入评论..." v-model="value">
+    <div class="comment-box">
+      <div class="name-container">
+        <img class="head-img" src="{{pic}}">
+        <div class="name">{{username}}</div>
+        <button class="get-button" open-type="getUserInfo" v-on:click="getInfo" style="visibility: {{flag}}">登录</button>
       </div>
-      <a class="push-box" open-type="getUserInfo" v-on:click="pushComment">
-        <img class="push-image" src="../../static/imgs/send.png"/>
-      </a>
+      <div class="comment-push">
+        <div class="input-container">
+          <!--        <img class="input-img" src="../../static/imgs/comment.png">-->
+          <input class="input" type="text" placeholder="请输入评论..." v-model="value">
+        </div>
+        <a class="push-box" open-type="getUserInfo" v-on:click="pushComment">
+          <img class="push-image" src="../../static/imgs/send.png"/>
+        </a>
+      </div>
     </div>
     <tip name="热门评论"></tip>
     <div v-for="item in commentlist" v-if="item.like>100" :key="item.level">
@@ -112,6 +114,10 @@
               'like': 0}
             wx.request({
               url: 'http://localhost:8000/addComment/',
+              method: 'POST',
+              header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
               data: {
                 id: that.id,
                 type: that.check,
@@ -154,6 +160,10 @@
         var that = this
         wx.request({
           url: 'http://localhost:8000/addLike/',
+          method: 'POST',
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
           data: {
             id: that.id,
             type: that.check,
@@ -171,6 +181,14 @@
   .comment{
     border-top: 1px solid lightgray;
   }
+
+  .comment-box {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: white;
+  }
+
   .comment-push {
     margin: 4px;
     height: 36px;

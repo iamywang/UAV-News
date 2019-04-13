@@ -1,5 +1,4 @@
 {
-  "cloud": true,
   "pages": [
     "pages/index/main",
     "pages/news/main",
@@ -19,7 +18,7 @@
     "navigationBarTitleText": "无人机小程序",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": false,
-    "backgroundColor": "#FCFCFC"
+    "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
     "color": "#C8C8C8",

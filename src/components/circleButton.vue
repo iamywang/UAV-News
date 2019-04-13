@@ -40,7 +40,6 @@
 
 <style scoped>
   .button-plus {
-    margin: 4px;
     width: 72px;
     height: 72px;
     text-align: center;

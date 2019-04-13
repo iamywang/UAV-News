@@ -33,8 +33,6 @@
 <style scoped>
   .setting-item {
     border-bottom: 1px solid lightgrey;
-    margin-left: 4px;
-    margin-right: 4px;
     height: 44px;
     display: flex;
     flex-direction: row;

@@ -30,6 +30,10 @@
       var _this = this
       wx.request({
         url: 'http://localhost:8000/updateSaw/',
+        method: 'POST',
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         data: {
           id: _this.id
         },

@@ -77,6 +77,7 @@
     margin: 8px;
     /*border-bottom: 1px solid lightgray;*/
     box-shadow: 0 0 4px darkgray;
+    background: white;
   }
 
   .info {
@@ -162,20 +163,20 @@
   .like {
     width: 20%;
     border-radius: 16px;
-    text-align: left;
+    text-align: center;
     color: white;
     line-height: 20px;
     height: 20px;
     margin-top: 2px;
     margin-bottom: 2px;
     margin-right: 8px;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(112, 128, 144, 0.8);
   }
 
   .like-pic {
     float: left;
     width: 16px;
     height: 16px;
-    margin: 2px 6px;
+    margin: 2px 0 2px 8px;
   }
 </style>

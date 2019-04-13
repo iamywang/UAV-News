@@ -1,10 +1,11 @@
 <template>
   <div class="mainc">
-    <tip name="最新资讯"></tip>
+    <tip name="新闻专栏"></tip>
     <div class="button-group">
       <cirbutton v-bind:name=item.name v-bind:color=item.color v-bind:pic=item.pic v-bind:corner=item.corner
                  v-for="item in cirlist" :key="item.name"></cirbutton>
     </div>
+    <tip name="最新资讯"></tip>
     <div v-for="item in newslist" :key="item._id">
       <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
             v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:id=item._id v-bind:see=item.see></news>

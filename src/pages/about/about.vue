@@ -5,14 +5,18 @@
       <img class="head" src="{{head}}">
       <div class="name">{{name}}</div>
     </button>
-    <img src="../../../static/imgs/bolang.png" style="width: 360px; height: 50px"/>
+<!--    <img src="../../../static/imgs/bolang.png" style="width: 360px; height: 50px"/>-->
     <div>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/comment.png" text="我的评论"></settingitem>
       <settingitem src="../../static/imgs/bookmark.png" text="我的收藏"></settingitem>
       <settingitem src="../../static/imgs/message.png" text="我的消息"></settingitem>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/feedback.png" text="产品反馈"></settingitem>
       <settingitem src="../../static/imgs/share.png" text="分享"></settingitem>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/setting.png" text="设置"></settingitem>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
     </div>
     <tip name="程序信息"></tip>
     <div class="version">名称：无人机小程序</div>

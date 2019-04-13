@@ -1,5 +1,9 @@
 <template>
   <div class="main-container">
+    <tip name="会议日程数据"></tip>
+    <uavitem text="无人机大会" src="../../static/imgs/technology.png"></uavitem>
+    <uavitem text="无人机研发探讨" src="../../static/imgs/technology.png"></uavitem>
+    <uavitem text="其他" src="../../static/imgs/technology.png"></uavitem>
     <tip name="无人机数据"></tip>
     <div v-for="item in datalist" :key="item.name">
       <uavitem v-bind:src=item.src v-bind:name=item.name v-bind:text=item.text></uavitem>

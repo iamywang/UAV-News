@@ -69,6 +69,10 @@
         })
         wx.request({
           url: 'http://localhost:8000/insertArticle/',
+          method: 'POST',
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
           data: {
             id: 'article' + that.date,
             name: that.newsname,

@@ -6,13 +6,13 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"uglifyFileName": true
 	},
 	"miniprogramRoot": "dist/wx/",
-	"cloudfunctionRoot": "cloudfunctions/",
 	"compileType": "miniprogram",
 	"appid": "wx81388a0a23995ab0",
-	"projectname": "UAV-News",
+	"projectname": "无人机小程序",
 	"condition": {
 		"search": {
 			"current": -1,

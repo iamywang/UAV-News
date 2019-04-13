@@ -6,21 +6,25 @@
         <img class="head" src="{{head}}">
         <div class="name">{{name}}</div>
       </button>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <div class="button-group">
         <cirbutton v-bind:name=item.name v-bind:color=item.color v-bind:pic=item.pic v-bind:corner=item.corner
                    v-for="item in leftlist" :key="item.name"></cirbutton>
       </div>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/comment.png" text="我的评论"></settingitem>
       <settingitem src="../../static/imgs/bookmark.png" text="我的收藏"></settingitem>
       <settingitem src="../../static/imgs/message.png" text="我的消息"></settingitem>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/feedback.png" text="产品反馈"></settingitem>
       <settingitem src="../../static/imgs/share.png" text="分享"></settingitem>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/setting.png" text="设置"></settingitem>
     </div>
     <div class="right-center {{open ? 'c-state1' : ''}}">
       <div class="notice">
         <img src="../../../static/imgs/broadcast.png" style="float: left; margin: 4px; width: 24px; height: 24px"/>
-        公告栏：云开发全部迁移至Django and MySQL
+        公告栏：Nothing
       </div>
       <div class="tab-changer">
         <img src="../../../static/imgs/more.png" style="width: 18px; height: 18px; margin: 4px" v-on:click="slide"/>
@@ -30,7 +34,7 @@
         <div class="tab-item {{currentTab == 3 ? 'on' : ''}}" v-on:click="setTab(3)">数据</div>
         <div class="tab-item {{currentTab == 4 ? 'on' : ''}}" v-on:click="setTab(4)">专题</div>
       </div>
-      <swiper style="height: 930px" current="{{currentTab}}" @change="swiperChange">
+      <swiper style="height: 920px" current="{{currentTab}}" @change="swiperChange">
         <!--页面0-->
         <swiper-item>
           <searchbox></searchbox>
@@ -72,17 +76,17 @@
           <tip name="Top 搜"></tip>
           <div class="hotword-box">
             <div class="hotword">无人机</div>
-            <div class="hotword">太阳能</div>
-            <div class="hotword">地狱之门</div>
-            <div class="hotword">环球网</div>
+            <div class="hotword">无人机</div>
+            <div class="hotword">无人机</div>
+            <div class="hotword">无人机</div>
           </div>
           <tip name="Top 读"></tip>
-          <div v-for="item in newslist" v-if="item.see > 50" :key="item._id">
+          <div v-for="item in newslist" v-if="item.see > 80" :key="item._id">
             <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
                   v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:id=item._id v-bind:see=item.see marktag="Top"></news>
           </div>
           <tip name="Top 观"></tip>
-          <div v-for="item in videolist" v-if="item.see > 50" :key="item._id">
+          <div v-for="item in videolist" v-if="item.see > 80" :key="item._id">
             <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
                     v-bind:back=item.videoback v-bind:id=item._id v-bind:see=item.see></videox>
           </div>
@@ -97,6 +101,7 @@
         <!--页面2-->
         <swiper-item>
           <searchbox></searchbox>
+          <tip name="用户部落"></tip>
           <div v-for="item in articlelist" :key="item._id">
             <news v-bind:name=item.name v-bind:date=item.date v-bind:tag=item.tag v-bind:comment=item.comment
                   v-bind:text=item.newstext v-bind:pic=item.newsback v-bind:id=item._id v-bind:see=item.see marktag="部落"></news>
@@ -116,7 +121,7 @@
         <!--页面4-->
         <swiper-item>
           <swiper indicator-dots="{{true}}" previous-margin="48px" next-margin="48px" indicator-color="#FFFFFF"
-                  indicator-active-color="#708090" style="height: 160px" current="{{swiperIndex}}"
+                  indicator-active-color="#708090" style="background: #f0ffff; height: 200px" current="{{swiperIndex}}"
                   @change="imageChange">
             <div v-for="item in piclist" :key="item.src">
               <swiper-item style="display: flex; flex-direction: column; justify-content: center">
@@ -205,7 +210,9 @@
           {'name': '专家言论', 'pic': '../../static/imgs/hot.png', 'color': '#772222', corner: 7},
           {'name': '测评室', 'pic': '../../static/imgs/hot.png', 'color': '#222277', corner: 0},
           {'name': '购买建议', 'pic': '../../static/imgs/hot.png', 'color': '#338888', corner: 0},
-          {'name': '其他', 'pic': '../../static/imgs/hot.png', 'color': '#888833', corner: 99}
+          {'name': '其他1', 'pic': '../../static/imgs/hot.png', 'color': '#888833', corner: 99},
+          {'name': '其他2', 'pic': '../../static/imgs/hot.png', 'color': '#888833', corner: 99},
+          {'name': '其他3', 'pic': '../../static/imgs/hot.png', 'color': '#888833', corner: 99}
         ],
         datalist: [
           {name: '固定翼无人机', src: '../../static/imgs/technology.png', text: '固定翼无人机'},
@@ -344,6 +351,8 @@
   .c-state1 {
     transform: rotate(0deg) scale(1) translate(75%, 0%);
     -webkit-transform: rotate(0deg) scale(1) translate(75%, 0%);
+    transition: All 0.4s ease;
+    -webkit-transition: All 0.4s ease;
   }
 
   .tab-changer {
@@ -375,7 +384,7 @@
     height: 32px;
     line-height: 32px;
     display: inline-block;
-    min-width: 130px;
+    min-width: 150px;
     background: #ebebeb;
     border-radius: 16px;
   }
