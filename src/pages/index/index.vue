@@ -24,7 +24,7 @@
     <div class="right-center {{open ? 'c-state1' : ''}}">
       <div class="notice">
         <img src="../../../static/imgs/broadcast.png" style="float: left; margin: 4px; width: 24px; height: 24px"/>
-        公告栏：Nothing
+        我的id：{{openid}}
       </div>
       <div class="tab-changer">
         <img src="../../../static/imgs/more.png" style="width: 18px; height: 18px; margin: 4px" v-on:click="slide"/>
@@ -34,7 +34,7 @@
         <div class="tab-item {{currentTab == 3 ? 'on' : ''}}" v-on:click="setTab(3)">数据</div>
         <div class="tab-item {{currentTab == 4 ? 'on' : ''}}" v-on:click="setTab(4)">专题</div>
       </div>
-      <swiper style="height: 920px" current="{{currentTab}}" @change="swiperChange">
+      <swiper style="height: 880px" current="{{currentTab}}" @change="swiperChange">
         <!--页面0-->
         <swiper-item>
           <searchbox></searchbox>
@@ -48,16 +48,15 @@
             </div>
           </swiper>
           <div class="latest-content">
-            <tip name="最新新闻"></tip>
+            <tip name="最新"></tip>
             <div v-if="newslist[0]">
-              <div v-for="count in latestnum" :key="count">
+              <div v-for="count in 3" :key="count">
                 <news v-bind:name=newslist[count-1].name v-bind:date=newslist[count-1].date
                       v-bind:tag=newslist[count-1].tag v-bind:comment=newslist[count-1].comment
                       v-bind:text=newslist[count-1].newstext v-bind:pic=newslist[count-1].newsback
                       v-bind:id=newslist[count-1]._id v-bind:see=newslist[count-1].see marktag="最新"></news>
               </div>
             </div>
-            <tip name="最新视频"></tip>
             <div v-if="videolist[0]">
               <videox v-bind:name=videolist[0].name v-bind:date=videolist[0].date v-bind:time=videolist[0].time
                       v-bind:comment=videolist[0].comment v-bind:back=videolist[0].videoback
@@ -76,9 +75,9 @@
           <tip name="Top 搜"></tip>
           <div class="hotword-box">
             <div class="hotword">无人机</div>
-            <div class="hotword">无人机</div>
-            <div class="hotword">无人机</div>
-            <div class="hotword">无人机</div>
+            <div class="hotword">巴黎圣母院</div>
+            <div class="hotword">物流</div>
+            <div class="hotword">环球网</div>
           </div>
           <tip name="Top 读"></tip>
           <div v-for="item in newslist" v-if="item.see > 80" :key="item._id">
@@ -93,6 +92,12 @@
           <tip name="Top 评"></tip>
           <div v-if="newslist[0]">
             <div v-for="item in newslist[0].commentlist" v-if="item.like > 100" :key="item.level">
+              <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
+                       v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like></comment>
+            </div>
+          </div>
+          <div v-if="videolist[0]">
+            <div v-for="item in videolist[0].commentlist" v-if="item.like > 100" :key="item.level">
               <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
                        v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like></comment>
             </div>
@@ -121,7 +126,7 @@
         <!--页面4-->
         <swiper-item>
           <swiper indicator-dots="{{true}}" previous-margin="48px" next-margin="48px" indicator-color="#FFFFFF"
-                  indicator-active-color="#708090" style="background: #f0ffff; height: 200px" current="{{swiperIndex}}"
+                  indicator-active-color="#708090" style="height: 160px" current="{{swiperIndex}}"
                   @change="imageChange">
             <div v-for="item in piclist" :key="item.src">
               <swiper-item style="display: flex; flex-direction: column; justify-content: center">
@@ -136,7 +141,7 @@
           </div>
           <tip name="专栏文章"></tip>
           <div v-if="newslist[0]">
-            <div v-for="count in latestnum" :key="count">
+            <div v-for="count in 3" :key="count">
               <news v-bind:name=newslist[count-1].name v-bind:date=newslist[count-1].date
                     v-bind:tag=newslist[count-1].tag  v-bind:comment=newslist[count-1].comment
                     v-bind:text=newslist[count-1].newstext v-bind:pic=newslist[count-1].newsback
@@ -167,6 +172,19 @@
       })
       this.request_mysql()
       var that = this
+      wx.login({
+        success (res) {
+          wx.request({
+            url: 'http://wqc.frp.206680.xyz/onLogin',
+            data: {
+              code: res.code
+            },
+            success (ress) {
+              that.openid = ress.data.openid
+            }
+          })
+        }
+      })
       wx.getUserInfo({
         success (res) {
           const userInfo = res.userInfo
@@ -185,34 +203,29 @@
         articlelist: [],
         videolist: [],
         piclist: [],
-        livelist: [],
+        latestlist: [],
         open: false,
         head: '../../static/imgs/user.png',
         name: '点击登录',
         currentTab: 0,
         swiperIndex: 0,
-        latestnum: 3,
+        openid: '',
         leftlist: [
-          {'name': '功能1', 'pic': '../../static/imgs/hot.png', 'color': '#122222', corner: 5},
-          {'name': '功能2', 'pic': '../../static/imgs/hot.png', 'color': '#233333', corner: 3},
-          {'name': '功能3', 'pic': '../../static/imgs/hot.png', 'color': '#344444', corner: 2}
+          {'name': '功能1', 'pic': '../../static/imgs/hot.png', 'color': '#122222', corner: 0},
+          {'name': '功能2', 'pic': '../../static/imgs/hot.png', 'color': '#233333', corner: 0},
+          {'name': '功能3', 'pic': '../../static/imgs/hot.png', 'color': '#344444', corner: 0}
         ],
         cirlist: [
-          {'name': '热门新闻', 'pic': '../../static/imgs/hot.png', 'color': '#123333', corner: 99},
-          {'name': '热门视频', 'pic': '../../static/imgs/hot.png', 'color': '#234444', corner: 9},
+          {'name': '热门新闻', 'pic': '../../static/imgs/hot.png', 'color': '#123333', corner: 3},
+          {'name': '热门视频', 'pic': '../../static/imgs/hot.png', 'color': '#234444', corner: 1},
           {'name': '其他热门', 'pic': '../../static/imgs/hot.png', 'color': '#345555', corner: 0}
         ],
         spelist: [
-          {'name': '早报', 'pic': '../../static/imgs/hot.png', 'color': '#117711', corner: 3},
+          {'name': '早报', 'pic': '../../static/imgs/hot.png', 'color': '#117711', corner: 0},
           {'name': '精品文章', 'pic': '../../static/imgs/hot.png', 'color': '#771111', corner: 0},
           {'name': '潮流热机', 'pic': '../../static/imgs/hot.png', 'color': '#111177', corner: 0},
-          {'name': '数据先锋', 'pic': '../../static/imgs/hot.png', 'color': '#227722', corner: 7},
-          {'name': '专家言论', 'pic': '../../static/imgs/hot.png', 'color': '#772222', corner: 7},
-          {'name': '测评室', 'pic': '../../static/imgs/hot.png', 'color': '#222277', corner: 0},
-          {'name': '购买建议', 'pic': '../../static/imgs/hot.png', 'color': '#338888', corner: 0},
-          {'name': '其他1', 'pic': '../../static/imgs/hot.png', 'color': '#888833', corner: 99},
-          {'name': '其他2', 'pic': '../../static/imgs/hot.png', 'color': '#888833', corner: 99},
-          {'name': '其他3', 'pic': '../../static/imgs/hot.png', 'color': '#888833', corner: 99}
+          {'name': '数据先锋', 'pic': '../../static/imgs/hot.png', 'color': '#227722', corner: 0},
+          {'name': '专家言论', 'pic': '../../static/imgs/hot.png', 'color': '#772222', corner: 0}
         ],
         datalist: [
           {name: '固定翼无人机', src: '../../static/imgs/technology.png', text: '固定翼无人机'},
@@ -227,7 +240,7 @@
       request_mysql () {
         var _this = this
         wx.request({
-          url: 'http://localhost:8000/search/',
+          url: 'http://wqc.frp.206680.xyz/search/',
           data: {
             key: 'pics'
           },
@@ -236,7 +249,7 @@
           }
         })
         wx.request({
-          url: 'http://localhost:8000/search/',
+          url: 'http://wqc.frp.206680.xyz/search/',
           data: {
             key: 'news'
           },
@@ -245,7 +258,7 @@
           }
         })
         wx.request({
-          url: 'http://localhost:8000/search/',
+          url: 'http://wqc.frp.206680.xyz/search/',
           data: {
             key: 'article'
           },
@@ -254,7 +267,7 @@
           }
         })
         wx.request({
-          url: 'http://localhost:8000/search/',
+          url: 'http://wqc.frp.206680.xyz/search/',
           data: {
             key: 'videos'
           },
@@ -282,24 +295,6 @@
       },
       login () {
         var that = this
-        // wx.login({
-        //   success (res) {
-        //     if (res.code) {
-        //       // 发起网络请求
-        //       wx.request({
-        //         url: 'http://localhost:8000/onLogin',
-        //         data: {
-        //           code: res.code
-        //         },
-        //         success (ress) {
-        //           console.log(ress)
-        //         }
-        //       })
-        //     } else {
-        //       console.log('登录失败！' + res.errMsg)
-        //     }
-        //   }
-        // })
         wx.getUserInfo({
           success (res) {
             const userInfo = res.userInfo

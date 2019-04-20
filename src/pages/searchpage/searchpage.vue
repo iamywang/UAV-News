@@ -50,7 +50,7 @@
         var _this = this
         if (_this.key !== '') {
           wx.request({
-            url: 'http://localhost:8000/allSearch/',
+            url: 'http://wqc.frp.206680.xyz/allSearch/',
             data: {
               key: _this.key
             },

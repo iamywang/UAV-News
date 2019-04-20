@@ -29,7 +29,7 @@
       this.request_mysql()
       var _this = this
       wx.request({
-        url: 'http://localhost:8000/updateVideoSaw/',
+        url: 'http://wqc.frp.206680.xyz/updateVideoSaw/',
         method: 'POST',
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -55,7 +55,7 @@
       request_mysql () {
         var _this = this
         wx.request({
-          url: 'http://localhost:8000/getOneVideo/',
+          url: 'http://wqc.frp.206680.xyz/getOneVideo/',
           data: {
             id: _this.id
           },

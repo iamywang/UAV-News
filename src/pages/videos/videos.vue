@@ -9,12 +9,6 @@
     <div v-for="item in videolist" :key="item._id">
       <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
               v-bind:back=item.videoback v-bind:id=item._id v-bind:see=item.see></videox>
-      <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-              v-bind:back=item.videoback v-bind:id=item._id v-bind:see=item.see></videox>
-      <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-              v-bind:back=item.videoback v-bind:id=item._id v-bind:see=item.see></videox>
-      <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-              v-bind:back=item.videoback v-bind:id=item._id v-bind:see=item.see></videox>
     </div>
     <tip name="直播专栏"></tip>
     <div class="button-group">
@@ -23,12 +17,6 @@
     </div>
     <tip name="正在直播"></tip>
     <div v-for="item in livelist" :key="item._id">
-      <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-              v-bind:back=item.videoback v-bind:id=item._id></videox>
-      <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-              v-bind:back=item.videoback v-bind:id=item._id></videox>
-      <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-              v-bind:back=item.videoback v-bind:id=item._id></videox>
       <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
               v-bind:back=item.videoback v-bind:id=item._id></videox>
     </div>
@@ -45,7 +33,7 @@
     onShow () {
       var _this = this
       wx.request({
-        url: 'http://localhost:8000/search/',
+        url: 'http://wqc.frp.206680.xyz/search/',
         data: {
           key: 'videos'
         },
@@ -58,7 +46,7 @@
     onPullDownRefresh () {
       var _this = this
       wx.request({
-        url: 'http://localhost:8000/search/',
+        url: 'http://wqc.frp.206680.xyz/search/',
         data: {
           key: 'videos'
         },

@@ -59,7 +59,8 @@
       },
       pushPage () {
         var that = this
-        that.date = that.formatTime(new Date())
+        var tdate = new Date()
+        that.date = that.formatTime(tdate)
         wx.getUserInfo({
           success (res) {
             const userInfo = res.userInfo
@@ -68,13 +69,13 @@
           }
         })
         wx.request({
-          url: 'http://localhost:8000/insertArticle/',
+          url: 'http://wqc.frp.206680.xyz/insertArticle/',
           method: 'POST',
           header: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
           data: {
-            id: 'article' + that.date,
+            id: 'article' + tdate.getFullYear() + this.formatNumber(tdate.getMonth() + 1) + this.formatNumber(tdate.getDate()) + this.formatNumber(tdate.getHours()) + this.formatNumber(tdate.getMinutes()),
             name: that.newsname,
             date: that.date,
             tag: that.tag,

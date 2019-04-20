@@ -23,10 +23,12 @@
                @addLike="addlike"></comment>
     </div>
     <tip name="评论列表"></tip>
-    <div v-for="item in commentlist" :key="item.level">
-      <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
-               v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like
-               @addLike="addlike"></comment>
+    <div style="margin-bottom: 80px">
+      <div v-for="item in commentlist" :key="item.level">
+        <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
+                 v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like
+                 @addLike="addlike"></comment>
+      </div>
     </div>
   </div>
 </template>
@@ -113,7 +115,7 @@
               'level': that.level + 1,
               'like': 0}
             wx.request({
-              url: 'http://localhost:8000/addComment/',
+              url: 'http://wqc.frp.206680.xyz/addComment/',
               method: 'POST',
               header: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -159,7 +161,7 @@
         this.commentlist[msg[1] - 1].like = msg[0]
         var that = this
         wx.request({
-          url: 'http://localhost:8000/addLike/',
+          url: 'http://wqc.frp.206680.xyz/addLike/',
           method: 'POST',
           header: {
             'Content-Type': 'application/x-www-form-urlencoded'
