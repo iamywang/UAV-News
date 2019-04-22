@@ -33,7 +33,7 @@
     onShow () {
       var _this = this
       wx.request({
-        url: 'http://wqc.frp.206680.xyz/search/',
+        url: 'http://localhost:8000/search/',
         data: {
           key: 'videos'
         },
@@ -46,7 +46,7 @@
     onPullDownRefresh () {
       var _this = this
       wx.request({
-        url: 'http://wqc.frp.206680.xyz/search/',
+        url: 'http://localhost:8000/search/',
         data: {
           key: 'videos'
         },

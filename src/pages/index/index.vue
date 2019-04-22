@@ -175,7 +175,7 @@
       wx.login({
         success (res) {
           wx.request({
-            url: 'http://wqc.frp.206680.xyz/onLogin',
+            url: 'http://localhost:8000/onLogin',
             data: {
               code: res.code
             },
@@ -240,7 +240,7 @@
       request_mysql () {
         var _this = this
         wx.request({
-          url: 'http://wqc.frp.206680.xyz/search/',
+          url: 'http://localhost:8000/search/',
           data: {
             key: 'pics'
           },
@@ -249,7 +249,7 @@
           }
         })
         wx.request({
-          url: 'http://wqc.frp.206680.xyz/search/',
+          url: 'http://localhost:8000/search/',
           data: {
             key: 'news'
           },
@@ -258,7 +258,7 @@
           }
         })
         wx.request({
-          url: 'http://wqc.frp.206680.xyz/search/',
+          url: 'http://localhost:8000/search/',
           data: {
             key: 'article'
           },
@@ -267,7 +267,7 @@
           }
         })
         wx.request({
-          url: 'http://wqc.frp.206680.xyz/search/',
+          url: 'http://localhost:8000/search/',
           data: {
             key: 'videos'
           },

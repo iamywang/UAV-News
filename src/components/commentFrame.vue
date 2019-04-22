@@ -115,7 +115,7 @@
               'level': that.level + 1,
               'like': 0}
             wx.request({
-              url: 'http://wqc.frp.206680.xyz/addComment/',
+              url: 'http://localhost:8000/addComment/',
               method: 'POST',
               header: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -161,7 +161,7 @@
         this.commentlist[msg[1] - 1].like = msg[0]
         var that = this
         wx.request({
-          url: 'http://wqc.frp.206680.xyz/addLike/',
+          url: 'http://localhost:8000/addLike/',
           method: 'POST',
           header: {
             'Content-Type': 'application/x-www-form-urlencoded'

@@ -69,7 +69,7 @@
           }
         })
         wx.request({
-          url: 'http://wqc.frp.206680.xyz/insertArticle/',
+          url: 'http://localhost:8000/insertArticle/',
           method: 'POST',
           header: {
             'Content-Type': 'application/x-www-form-urlencoded'
