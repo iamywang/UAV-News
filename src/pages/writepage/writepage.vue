@@ -8,7 +8,7 @@
     <div class="name-container">
       <img class="head-img" v-bind:src=pic>
       <div class="name">{{tag}}</div>
-      <button class="get-button" open-type="getUserInfo" v-on:click="getInfo" style="visibility: {{flag}}">登录</button>
+      <button class="get-button" open-type="getUserInfo" v-on:click="getInfo" v-if="flag">登录</button>
     </div>
     <tip name="正文"></tip>
     <textarea class="input-text" type="text" placeholder="请输入正文..." v-model="text"></textarea>
@@ -27,7 +27,7 @@
           const userInfo = res.userInfo
           that.tag = userInfo.nickName
           that.pic = userInfo.avatarUrl
-          that.flag = 'hidden'
+          that.flag = false
         }
       })
     },
@@ -42,7 +42,7 @@
         tag: 'user',
         pic: '../../static/imgs/user.png',
         text: '',
-        flag: 'visible'
+        flag: true
       }
     },
     methods: {
@@ -53,7 +53,7 @@
             const userInfo = res.userInfo
             that.tag = userInfo.nickName
             that.pic = userInfo.avatarUrl
-            that.flag = 'hidden'
+            that.flag = false
           }
         })
       },

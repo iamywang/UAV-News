@@ -1,7 +1,7 @@
 <template>
     <div class="comment-item">
       <div class="info">
-        <img class="head" src="{{head}}">
+        <img class="head" :src="head">
         <div class="name-container">
           <div class="name">{{name}}
             <div class="level">{{level}} 楼</div>

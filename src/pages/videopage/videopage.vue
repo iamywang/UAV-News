@@ -8,7 +8,7 @@
       <div style="width: 16%"><img class="tip-img" src="../../../static/imgs/ncomment.png">{{comment}}</div>
       <div style="width: 16%"><img class="tip-img" src="../../../static/imgs/nsee.png">{{see}}</div>
     </div>
-    <video src="{{src}}" title="{{newsname}}" autoplay="{{true}}" style="width: 100%; margin-top: 8px"></video>
+    <video :src=src :title=newsname :autoplay=true style="width: 100%; margin-top: 8px"></video>
     <div class="share">
       <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/bookmark.png"/>收藏</button>
       <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/share.png"/>分享</button>

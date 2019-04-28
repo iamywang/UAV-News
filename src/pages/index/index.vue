@@ -3,7 +3,7 @@
     <div class="left-silde" v-if="open">
       <searchbox v-bind:flag=true></searchbox>
       <button class="info" open-type="getUserInfo" v-on:click="login">
-        <img class="head" src="{{head}}">
+        <img class="head" :src="head">
         <div class="name">{{name}}</div>
       </button>
       <div style="height: 8px; width: 100%; background: #ebebeb"></div>
@@ -21,29 +21,29 @@
       <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/setting.png" text="设置"></settingitem>
     </div>
-    <div class="right-center {{open ? 'c-state1' : ''}}">
+    <div :class="['right-center',open ? 'c-state1' : '']">
       <div class="notice">
         <img src="../../../static/imgs/broadcast.png" style="float: left; margin: 4px; width: 24px; height: 24px"/>
-        我的id：{{openid}}
+        我的id：{{ openid }}
       </div>
       <div class="tab-changer">
         <img src="../../../static/imgs/more.png" style="width: 18px; height: 18px; margin: 4px" v-on:click="slide"/>
-        <div class="tab-item {{currentTab == 0 ? 'on' : ''}}" v-on:click="setTab(0)">最新</div>
-        <div class="tab-item {{currentTab == 1 ? 'on' : ''}}" v-on:click="setTab(1)">Top榜</div>
-        <div class="tab-item {{currentTab == 2 ? 'on' : ''}}" v-on:click="setTab(2)">部落</div>
-        <div class="tab-item {{currentTab == 3 ? 'on' : ''}}" v-on:click="setTab(3)">数据</div>
-        <div class="tab-item {{currentTab == 4 ? 'on' : ''}}" v-on:click="setTab(4)">专题</div>
+        <div :class="['tab-item',currentTab === 0 ? 'on' : '']" v-on:click="setTab(0)">最新</div>
+        <div :class="['tab-item',currentTab === 1 ? 'on' : '']" v-on:click="setTab(1)">Top榜</div>
+        <div :class="['tab-item',currentTab === 2 ? 'on' : '']" v-on:click="setTab(2)">部落</div>
+        <div :class="['tab-item',currentTab === 3 ? 'on' : '']" v-on:click="setTab(3)">数据</div>
+        <div :class="['tab-item',currentTab === 4 ? 'on' : '']" v-on:click="setTab(4)">专题</div>
       </div>
-      <swiper style="height: 880px" current="{{currentTab}}" @change="swiperChange">
+      <swiper style="height: 880px" :current="currentTab" @change="swiperChange">
         <!--页面0-->
         <swiper-item>
           <searchbox></searchbox>
-          <swiper indicator-dots="{{true}}" previous-margin="48px" next-margin="48px" indicator-color="#FFFFFF"
-                  indicator-active-color="#708090" style="height: 160px" current="{{swiperIndex}}"
+          <swiper indicator-dots="true" previous-margin="48px" next-margin="48px" indicator-color="#FFFFFF"
+                  indicator-active-color="#708090" style="height: 160px" :current="swiperIndex"
                   @change="imageChange">
             <div v-for="item in piclist" :key="item.src">
               <swiper-item style="display: flex; flex-direction: column; justify-content: center">
-                <image class="swiper-img {{swiperIndex == index ? 'active' : ''}}" src="{{item.src}}"></image>
+                <img :class="['swiper-img',swiperIndex === index ? 'active' : '']" :src="item.src"/>
               </swiper-item>
             </div>
           </swiper>
@@ -125,12 +125,12 @@
         </swiper-item>
         <!--页面4-->
         <swiper-item>
-          <swiper indicator-dots="{{true}}" previous-margin="48px" next-margin="48px" indicator-color="#FFFFFF"
-                  indicator-active-color="#708090" style="height: 160px" current="{{swiperIndex}}"
+          <swiper indicator-dots="true" previous-margin="48px" next-margin="48px" indicator-color="#FFFFFF"
+                  indicator-active-color="#708090" style="height: 160px" :current="swiperIndex"
                   @change="imageChange">
             <div v-for="item in piclist" :key="item.src">
               <swiper-item style="display: flex; flex-direction: column; justify-content: center">
-                <image class="swiper-img {{swiperIndex == index ? 'active' : ''}}" src="{{item.src}}"></image>
+                <img :class="['swiper-img',swiperIndex === index ? 'active' : '']" :src="item.src"/>
               </swiper-item>
             </div>
           </swiper>

@@ -2,7 +2,7 @@
   <div class="main-container">
     <tip name="个人信息"></tip>
     <button class="info" open-type="getUserInfo" v-on:click="login">
-      <img class="head" src="{{head}}">
+      <img class="head" :src=head>
       <div class="name">{{name}}</div>
     </button>
 <!--    <img src="../../../static/imgs/bolang.png" style="width: 360px; height: 50px"/>-->
@@ -21,8 +21,8 @@
     <tip name="程序信息"></tip>
     <div class="version">名称：无人机小程序</div>
     <div class="version">开发者：iamywang</div>
-    <div class="version">版本：1.2.3</div>
-    <div class="version">更新时间：2019.4.20</div>
+    <div class="version">版本：1.2.4</div>
+    <div class="version">更新时间：2019.4.28</div>
   </div>
 </template>
 

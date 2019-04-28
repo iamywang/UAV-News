@@ -1,10 +1,9 @@
 <template>
-  <a class="news"
-     href="../mainpage/main?id={{id}}">
+  <a class="news" :href="site">
     <div class="mark" v-if="marktag">{{marktag}}</div>
     <div class="name">{{name}}</div>
     <div class="main-container">
-      <img class="img" src="{{pic}}">
+      <img class="img" :src="pic">
       <div class="text">{{text}}</div>
     </div>
     <div class="dc-container">
@@ -54,6 +53,11 @@
       marktag: {
         type: String,
         default: ''
+      }
+    },
+    data () {
+      return {
+        site: '../mainpage/main?id=' + this.id
       }
     }
   }

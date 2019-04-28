@@ -1,12 +1,12 @@
 <template>
-  <a class="button-plus" href="{{url}}">
+  <a class="button-plus" :href="url">
     <div>
       <div class="corner" v-if="corner>0">{{corner}}</div>
       <div class="corner" style="background: rgba(0,0,0,0)" v-if="corner===0"></div>
-      <img class="img" src="{{pic}}">
+      <img class="img" :src="pic">
     </div>
     <div class="button-text">
-      <div style="color:{{color}}">{{name}}</div>
+      <div style="color: darkblue">{{name}}</div>
     </div>
   </a>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <a class="setting-item" href="{{url}}">
-    <img class="pic" src="{{src}}">
+  <a class="setting-item" :href="url">
+    <img class="pic" :src="src">
     <div class="text">{{text}}</div>
     <div class="arrow">{{arrow}}</div>
   </a>

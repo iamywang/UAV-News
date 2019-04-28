@@ -1,7 +1,7 @@
 <template>
-  <a class="videox" href="../videopage/main?id={{id}}">
+  <a class="videox" :href="site">
     <div class="mark">视频</div>
-    <div class="name"  style="background: url({{back}}) no-repeat;background-size: cover;-moz-background-size: cover;-webkit-background-size: cover;-o-background-size: cover">{{name}}</div>
+    <div class="name"  :style="backgroundstyle">{{name}}</div>
     <div class="dc-container">
         <div style="width: 40%"><img class="tip-img" src="../../static/imgs/ndate.png">{{date}}</div>
         <div style="width: 28%"><img class="tip-img" src="../../static/imgs/ntime.png">{{time}}</div>
@@ -41,6 +41,12 @@
       see: {
         type: Number,
         default: 0
+      }
+    },
+    data () {
+      return {
+        site: '../videopage/main?id=' + this.id,
+        backgroundstyle: 'background: url(' + this.back + ') no-repeat;background-size: cover;-moz-background-size: cover;-webkit-background-size: cover;-o-background-size: cover'
       }
     }
   }

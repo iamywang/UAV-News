@@ -2,9 +2,9 @@
   <div class="comment">
     <div class="comment-box">
       <div class="name-container">
-        <img class="head-img" src="{{pic}}">
+        <img class="head-img" :src="pic">
         <div class="name">{{username}}</div>
-        <button class="get-button" open-type="getUserInfo" v-on:click="getInfo" style="visibility: {{flag}}">登录</button>
+        <button class="get-button" open-type="getUserInfo" v-on:click="getInfo"v-if="flag">登录</button>
       </div>
       <div class="comment-push">
         <div class="input-container">
@@ -46,7 +46,7 @@
           const userInfo = res.userInfo
           that.username = userInfo.nickName
           that.pic = userInfo.avatarUrl
-          that.flag = 'hidden'
+          that.flag = false
         }
       })
     },
@@ -79,7 +79,7 @@
     data () {
       return {
         value: '',
-        flag: 'visible'
+        flag: true
       }
     },
     methods: {
@@ -90,7 +90,7 @@
             const userInfo = res.userInfo
             that.username = userInfo.nickName
             that.pic = userInfo.avatarUrl
-            that.flag = 'hidden'
+            that.flag = false
           }
         })
       },

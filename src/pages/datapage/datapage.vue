@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <div class="name-container">
-      <img class="pic" src="{{pic}}">
+      <img class="pic" :src=pic>
       <div class="info" style="font-weight: bold">{{name}}</div>
     </div>
     <tip name="详细数据"></tip>

@@ -1,6 +1,6 @@
 <template>
-  <a class="uav-item" href="../datapage/main?name={{text}}&pic={{src}}&text={{info}}">
-    <img class="pic" src="{{src}}">
+  <a class="uav-item" :href="site">
+    <img class="pic" :src="src">
     <div class="text">{{text}}</div>
     <div class="arrow">{{arrow}}</div>
   </a>
@@ -24,7 +24,8 @@
     },
     data () {
       return {
-        arrow: '>'
+        arrow: '>',
+        site: '../datapage/main?name=' + this.text + '&pic=' + this.src + '&text=' + this.info
       }
     }
   }
