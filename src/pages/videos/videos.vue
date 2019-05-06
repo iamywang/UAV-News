@@ -8,9 +8,9 @@
     <tip name="最新视频"></tip>
     <div v-for="item in videolist" :key="item._id">
       <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-              v-bind:back=item.videoback v-bind:id=item._id v-bind:see=item.see></videox>
+              v-bind:back=item.videoback v-bind:videosrc=item.videosrc v-bind:id=item._id v-bind:see=item.see></videox>
     </div>
-    <tip name="直播专栏"></tip>
+    <!-- <tip name="直播专栏"></tip>
     <div class="button-group">
       <cirbutton v-bind:name=item.name v-bind:color=item.color v-bind:pic=item.pic v-bind:corner=item.corner
                  v-for="item in cirlivelist" :key="item.name"></cirbutton>
@@ -19,7 +19,7 @@
     <div v-for="item in livelist" :key="item._id">
       <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
               v-bind:back=item.videoback v-bind:id=item._id></videox>
-    </div>
+    </div> -->
   </div>
 </template>
 

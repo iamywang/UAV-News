@@ -1,13 +1,15 @@
 <template>
   <a class="videox" :href="site">
-    <div class="mark">视频</div>
-    <div class="name"  :style="backgroundstyle">{{name}}</div>
+    <video :title=name :poster=back autoplay=true :src=videosrc style="width: 100%; height: 180px">
+      <div class="mark">视频</div>
+      <div class="name">{{name}}</div>
+    </video>
     <div class="dc-container">
-        <div style="width: 40%"><img class="tip-img" src="../../static/imgs/ndate.png">{{date}}</div>
-        <div style="width: 28%"><img class="tip-img" src="../../static/imgs/ntime.png">{{time}}</div>
-        <div style="width: 16%"><img class="tip-img" src="../../static/imgs/ncomment.png">{{comment}}</div>
-        <div style="width: 16%"><img class="tip-img" src="../../static/imgs/nsee.png">{{see}}</div>
-      </div>
+      <div style="width: 40%"><img class="tip-img" src="../../static/imgs/ndate.png">{{date}}</div>
+      <div style="width: 28%"><img class="tip-img" src="../../static/imgs/ntime.png">{{time}}</div>
+      <div style="width: 16%"><img class="tip-img" src="../../static/imgs/ncomment.png">{{comment}}</div>
+      <div style="width: 16%"><img class="tip-img" src="../../static/imgs/nsee.png">{{see}}</div>
+    </div>
   </a>
 </template>
 
@@ -41,12 +43,15 @@
       see: {
         type: Number,
         default: 0
+      },
+      videosrc: {
+        type: String,
+        default: ''
       }
     },
     data () {
       return {
-        site: '../videopage/main?id=' + this.id,
-        backgroundstyle: 'background: url(' + this.back + ') no-repeat;background-size: cover;-moz-background-size: cover;-webkit-background-size: cover;-o-background-size: cover'
+        site: '../videopage/main?id=' + this.id
       }
     }
   }
@@ -54,21 +59,24 @@
 
 <style scoped>
   .videox {
-    height: 160px;
+    height: 224px;
     margin: 8px;
     /*border-radius: 8px;*/
     box-shadow:0 0 4px darkgray;
   }
 
   .name {
-    height: 128px;
+    height: 180px;
+    margin-right: 60px;
+    margin-left: 4px;
     color: snow;
     font-size: 15px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 32px;
+    text-shadow: 0 0 4px black;
     /*border-radius: 8px;*/
   }
 

@@ -34,7 +34,7 @@
         <div :class="['tab-item',currentTab === 3 ? 'on' : '']" v-on:click="setTab(3)">数据</div>
         <div :class="['tab-item',currentTab === 4 ? 'on' : '']" v-on:click="setTab(4)">专题</div>
       </div>
-      <swiper style="height: 880px" :current="currentTab" @change="swiperChange">
+      <swiper style="height: 950px" :current="currentTab" @change="swiperChange">
         <!--页面0-->
         <swiper-item>
           <searchbox></searchbox>
@@ -59,7 +59,7 @@
             </div>
             <div v-if="videolist[0]">
               <videox v-bind:name=videolist[0].name v-bind:date=videolist[0].date v-bind:time=videolist[0].time
-                      v-bind:comment=videolist[0].comment v-bind:back=videolist[0].videoback
+                      v-bind:comment=videolist[0].comment v-bind:back=videolist[0].videoback v-bind:videosrc=videolist[0].videosrc
                       v-bind:id=videolist[0]._id v-bind:see=videolist[0].see></videox>
             </div>
           </div>
@@ -87,7 +87,7 @@
           <tip name="Top 观"></tip>
           <div v-for="item in videolist" v-if="item.see > 80" :key="item._id">
             <videox v-bind:name=item.name v-bind:date=item.date v-bind:time=item.time v-bind:comment=item.comment
-                    v-bind:back=item.videoback v-bind:id=item._id v-bind:see=item.see></videox>
+                    v-bind:back=item.videoback v-bind:videosrc=item.videosrc v-bind:id=item._id v-bind:see=item.see></videox>
           </div>
           <tip name="Top 评"></tip>
           <div v-if="newslist[0]">
