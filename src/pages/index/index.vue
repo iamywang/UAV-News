@@ -12,9 +12,9 @@
                    v-for="item in leftlist" :key="item.name"></cirbutton>
       </div>
       <div style="height: 8px; width: 100%; background: #ebebeb"></div>
-      <settingitem src="../../static/imgs/comment.png" text="我的评论"></settingitem>
-      <settingitem src="../../static/imgs/bookmark.png" text="我的收藏"></settingitem>
-      <settingitem src="../../static/imgs/message.png" text="我的消息"></settingitem>
+      <settingitem src="../../static/imgs/message.png" text="我的发表" check="push"></settingitem>
+      <settingitem src="../../static/imgs/comment.png" text="我的评论" check="comment"></settingitem>
+      <settingitem src="../../static/imgs/bookmark.png" text="我的收藏" check="book"></settingitem>
       <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/feedback.png" text="产品反馈"></settingitem>
       <settingitem src="../../static/imgs/share.png" text="分享"></settingitem>
@@ -91,9 +91,12 @@
           </div>
           <tip name="Top 评"></tip>
           <div v-if="newslist[0]">
-            <div v-for="item in newslist[0].commentlist" v-if="item.like > 100" :key="item.level">
-              <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
-                       v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like></comment>
+            <div v-for="(news,index_) in newslist" :key="news._id">
+              <div v-for="item in news.commentlist" v-if="item.like > 100" :key="item.level">
+                <tip v-bind:name=news.name></tip>
+                <comment v-bind:name=item.name v-bind:head=item.head v-bind:location=item.location v-bind:model=item.model
+                         v-bind:text=item.text v-bind:date=item.date v-bind:level=item.level v-bind:like=item.like></comment>
+              </div>
             </div>
           </div>
           <div v-if="videolist[0]">

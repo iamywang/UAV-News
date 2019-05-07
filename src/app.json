@@ -10,6 +10,7 @@
     "pages/datapage/main",
     "pages/writepage/main",
     "pages/searchpage/main",
+    "pages/mypage/main",
     "pages/errorpage/main"
   ],
   "window": {

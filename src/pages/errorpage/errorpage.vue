@@ -8,7 +8,7 @@
 
 <script>
   import tip from '../../components/tip'
-
+  
   export default {
     components: {tip}
   }

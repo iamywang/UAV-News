@@ -1,5 +1,12 @@
 <template>
   <div class="mainc">
+    <div class="headinfo">视频列表</div>
+    <div v-if="videolist[0]">
+      <video :title=videolist[0].name :poster=videolist[0].videoback :src=videolist[0].videosrc style="width: 100%; height: 200px">
+        <div class="mark">最新</div>
+        <div class="name">{{videolist[0].name}}</div>
+      </video>
+    </div>
     <tip name="视频专栏"></tip>
     <div class="button-group">
       <cirbutton v-bind:name=item.name v-bind:color=item.color v-bind:pic=item.pic v-bind:corner=item.corner
@@ -80,5 +87,40 @@
 <style scoped>
   .button-group {
     text-align: center;
+  }
+
+  .headinfo {
+    border-radius: 8px;
+    margin: 4px;
+    color: white;
+    font-size: 15px;
+    line-height: 32px;
+    background: rgba(70, 80, 90, 0.75);
+    box-shadow: 0 0 2px black;
+    text-align: center;
+  }
+
+  .name {
+    color: lightcyan;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 32px;
+    background: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 2px black;
+    border-radius: 8px;
+  }
+
+  .mark {
+    float: left;
+    border-radius: 8px;
+    margin: 6px;
+    font-size: 12px;
+    color: white;
+    background: rgba(255, 0, 0, 0.75);
+    box-shadow: 0 0 2px lightcoral;
+    text-align: center;
+    width: 48px;
+    line-height: 20px;
   }
 </style>

@@ -8,21 +8,23 @@
 <!--    <img src="../../../static/imgs/bolang.png" style="width: 360px; height: 50px"/>-->
     <div>
       <div style="height: 8px; width: 100%; background: #ebebeb"></div>
-      <settingitem src="../../static/imgs/comment.png" text="我的评论"></settingitem>
-      <settingitem src="../../static/imgs/bookmark.png" text="我的收藏"></settingitem>
-      <settingitem src="../../static/imgs/message.png" text="我的消息"></settingitem>
+      <settingitem src="../../static/imgs/message.png" text="我的发表" check="push"></settingitem>
+      <settingitem src="../../static/imgs/comment.png" text="我的评论" check="comment"></settingitem>
+      <settingitem src="../../static/imgs/bookmark.png" text="我的收藏" check="book"></settingitem>
       <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/feedback.png" text="产品反馈"></settingitem>
       <settingitem src="../../static/imgs/share.png" text="分享"></settingitem>
       <div style="height: 8px; width: 100%; background: #ebebeb"></div>
       <settingitem src="../../static/imgs/setting.png" text="设置"></settingitem>
       <div style="height: 8px; width: 100%; background: #ebebeb"></div>
+      <settingitem src="../../static/imgs/setting.png" text="关于"></settingitem>
+      <div style="height: 8px; width: 100%; background: #ebebeb"></div>
     </div>
     <tip name="程序信息"></tip>
     <div class="version">名称：无人机小程序</div>
     <div class="version">开发者：iamywang</div>
-    <div class="version">版本：1.2.4</div>
-    <div class="version">更新时间：2019.4.28</div>
+    <div class="version">版本：1.3.0</div>
+    <div class="version">更新时间：2019.5.6</div>
   </div>
 </template>
 

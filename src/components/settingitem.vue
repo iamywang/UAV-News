@@ -1,5 +1,10 @@
 <template>
-  <a class="setting-item" :href="url">
+  <a class="setting-item" :href="errurl" v-if="check === ''">
+    <img class="pic" :src="src">
+    <div class="text">{{text}}</div>
+    <div class="arrow">{{arrow}}</div>
+  </a>
+  <a class="setting-item" :href="url" v-else>
     <img class="pic" :src="src">
     <div class="text">{{text}}</div>
     <div class="arrow">{{arrow}}</div>
@@ -17,14 +22,16 @@
         type: String,
         default: ''
       },
-      url: {
+      check: {
         type: String,
-        default: '../errorpage/main'
+        default: ''
       }
     },
     data () {
       return {
-        arrow: '>'
+        arrow: '>',
+        errurl: '../errorpage/main',
+        url: '../mypage/main?check=' + this.check
       }
     }
   }

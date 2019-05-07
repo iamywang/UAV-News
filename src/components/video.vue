@@ -1,6 +1,6 @@
 <template>
   <a class="videox" :href="site">
-    <video :title=name :poster=back autoplay=true :src=videosrc style="width: 100%; height: 180px">
+    <video :title=name :poster=back :src=videosrc style="width: 100%; height: 180px">
       <div class="mark">视频</div>
       <div class="name">{{name}}</div>
     </video>
