@@ -46,7 +46,7 @@
   }
 
   .text {
-    width: 90%;
+    width: 70%;
     font-size: 15px;
     line-height: 80px;
   }

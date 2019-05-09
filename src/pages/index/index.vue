@@ -76,8 +76,6 @@
           <div class="hotword-box">
             <div class="hotword">无人机</div>
             <div class="hotword">巴黎圣母院</div>
-            <div class="hotword">物流</div>
-            <div class="hotword">环球网</div>
           </div>
           <tip name="Top 读"></tip>
           <div v-for="item in newslist" v-if="item.see > 80" :key="item._id">
@@ -117,14 +115,17 @@
         </swiper-item>
         <!--页面3-->
         <swiper-item>
-          <tip name="会议日程数据"></tip>
-          <uavitem text="无人机大会" src="../../static/imgs/technology.png"></uavitem>
-          <uavitem text="无人机研发探讨" src="../../static/imgs/technology.png"></uavitem>
-          <uavitem text="其他" src="../../static/imgs/technology.png"></uavitem>
           <tip name="无人机数据"></tip>
           <div v-for="item in datalist" :key="item.name">
             <uavitem v-bind:src=item.src v-bind:name=item.name v-bind:text=item.text></uavitem>
           </div>
+          <tip name="会议日程数据"></tip>
+          <uavitem text="无人机大会" src="../../static/imgs/technology.png"></uavitem>
+          <uavitem text="无人机研发探讨" src="../../static/imgs/technology.png"></uavitem>
+          <tip name="电商购买数据"></tip>
+          <uavitem text="淘宝" src="../../static/imgs/taobao.png"></uavitem>
+          <uavitem text="天猫" src="../../static/imgs/tmall.png"></uavitem>
+          <uavitem text="京东" src="../../static/imgs/jd.png"></uavitem>
         </swiper-item>
         <!--页面4-->
         <swiper-item>
@@ -144,7 +145,7 @@
           </div>
           <tip name="专栏文章"></tip>
           <div v-if="newslist[0]">
-            <div v-for="count in 3" :key="count">
+            <div v-for="count in 4" :key="count">
               <news v-bind:name=newslist[count-1].name v-bind:date=newslist[count-1].date
                     v-bind:tag=newslist[count-1].tag  v-bind:comment=newslist[count-1].comment
                     v-bind:text=newslist[count-1].newstext v-bind:pic=newslist[count-1].newsback
@@ -231,11 +232,10 @@
           {'name': '专家言论', 'pic': '../../static/imgs/hot.png', 'color': '#772222', corner: 0}
         ],
         datalist: [
-          {name: '固定翼无人机', src: '../../static/imgs/technology.png', text: '固定翼无人机'},
-          {name: '无人直升机', src: '../../static/imgs/technology.png', text: '无人直升机'},
-          {name: '多旋翼无人机', src: '../../static/imgs/technology.png', text: '多旋翼无人机'},
-          {name: '垂直起降固定翼', src: '../../static/imgs/technology.png', text: '垂直起降固定翼'},
-          {name: '其他无人机', src: '../../static/imgs/technology.png', text: '其他无人机'}
+          {name: '固定翼无人机', src: 'https://product1.djicdn.com/uploads/photos/35446/medium_5ff80792-f403-4834-bf05-ac3e8b89be9b.jpg', text: '固定翼无人机'},
+          {name: '无人直升机', src: 'https://product1.djicdn.com/uploads/photos/35446/medium_5ff80792-f403-4834-bf05-ac3e8b89be9b.jpg', text: '无人直升机'},
+          {name: '多旋翼无人机', src: 'https://product1.djicdn.com/uploads/photos/35446/medium_5ff80792-f403-4834-bf05-ac3e8b89be9b.jpg', text: '多旋翼无人机'},
+          {name: '垂直起降固定翼', src: 'https://product1.djicdn.com/uploads/photos/35446/medium_5ff80792-f403-4834-bf05-ac3e8b89be9b.jpg', text: '垂直起降固定翼'}
         ]
       }
     },

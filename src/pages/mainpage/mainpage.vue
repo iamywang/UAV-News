@@ -9,7 +9,7 @@
     </div>
     <div><wxParse :content=text></wxParse></div>
     <div class="share">
-      <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/bookmark.png"/>收藏</button>
+      <button class="share-button"><img class="share-icon" src="../../../static/imgs/bookmark.png"/>收藏</button>
       <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/share.png"/>分享</button>
       <button class="share-button" open-type="share"><img class="share-icon" src="../../../static/imgs/feedback.png"/>打赏</button>
     </div>

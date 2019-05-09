@@ -2,13 +2,19 @@
   <div class="search-box">
     <img class="pic" src="../../static/imgs/search.png">
     <input class="input" type="text" placeholder="请输入搜索内容" v-model="value" v-if="flag===false">
-    <a class="push" :href="site" style="width: 20%" v-if="flag===false"><img class="pic" src="../../static/imgs/search.png">搜索</a>
-    <a class="push" href="../writepage/main" v-if="flag===false"><img class="pic" src="../../static/imgs/write.png">新文章</a>
+    <div class="push" style="width: 20%" v-if="flag===false" @click="navigateTo">
+      <img class="pic" src="../../static/imgs/search.png">搜索
+    </div>
+    <a class="push" href="../writepage/main" v-if="flag===false">
+      <img class="pic" src="../../static/imgs/write.png">新文章
+    </a>
     <input class="input" type="text" placeholder="请输入搜索内容" v-model="value" style="width: 72%" v-if="flag===true">
-    <a class="push" :href="site" style="width: 28%" v-if="flag===true"><img class="pic" src="../../static/imgs/search.png">搜索</a>
+    <div class="push" style="width: 28%" v-if="flag===true" @click="navigateTo">
+      <img class="pic" src="../../static/imgs/search.png">搜索
+    </div>
   </div>
 </template>
-
+s
 <script>
   export default {
     props: {
@@ -21,6 +27,14 @@
       return {
         value: '',
         site: '../searchpage/main?key=' + this.value
+      }
+    },
+    methods: {
+      navigateTo () {
+        this.site = '../searchpage/main?key=' + this.value
+        wx.navigateTo({
+          url: this.site
+        })
       }
     }
   }
